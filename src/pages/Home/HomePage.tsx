@@ -1,3 +1,9 @@
+import { Header } from '@/widgets/header';
+
 export const HomePage = () => {
-  return <div></div>;
+  return (
+    <main className='container'>
+      <Header />
+    </main>
+  );
 };
