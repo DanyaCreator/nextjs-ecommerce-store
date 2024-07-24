@@ -1,4 +1,4 @@
-import { allertaStencil } from '../fonts';
+import { allertaStencil } from '@/shared/assets/fonts';
 
 export const Logo = () => {
   return (
@@ -6,7 +6,9 @@ export const Logo = () => {
       <span className={`${allertaStencil.className} text-logo text-accent`}>
         S
       </span>
-      <span className={`${allertaStencil.className} text-logo`}>HOPPE</span>
+      <span className={`${allertaStencil.className} text-logo`}>
+        HOPPE
+      </span>
     </div>
   );
 };

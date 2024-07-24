@@ -1,12 +1,8 @@
-import {
-  buttonTexts,
-  cartIcon,
-  IconLink,
-  Logo,
-  profileIcon,
-  searchIcon,
-  UnderlineLink,
-} from '@/shared';
+import { cartIcon, profileIcon, searchIcon } from '@/shared/assets/icons';
+import { buttonTexts } from '@/shared/assets/texts';
+import { IconLink } from '@/shared/ui/IconLink';
+import { UnderlineLink } from '@/shared/ui/UnderlineLink';
+import { Logo } from './logo';
 
 export const Header = () => {
   return (

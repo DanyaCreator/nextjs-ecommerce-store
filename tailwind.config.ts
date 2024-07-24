@@ -8,7 +8,7 @@ const config: Config = {
     './src/widgets/**/*.{js,ts,jsx,tsx,mdx}',
     './src/entities/**/*.{js,ts,jsx,tsx,mdx}',
     './src/features/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/shared/ui/*.{js,ts,jsx,tsx,mdx}',
+    './src/shared/ui/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     screens: {
@@ -28,13 +28,15 @@ const config: Config = {
       },
     },
     colors: {
+      white: '#FFF',
+      accent: '#A18A68',
+      gray: '#D8D8D8',
       'gray-dark': '#707070',
       black: '#000000',
-      gray: '#D8D8D8',
-      accent: '#A18A68',
     },
     fontSize: {
       logo: ['35px', '40px'],
+      underlineLink: ['16px', '32px']
     },
   },
   plugins: [],

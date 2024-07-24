@@ -10,13 +10,15 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@types/swiper": "^6.0.0",
     "clsx": "^2.1.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
     "next": "14.2.4",
     "prettier": "^3.3.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "swiper": "^11.1.7"
   },
   "devDependencies": {
     "@feature-sliced/eslint-config": "^0.1.1",
