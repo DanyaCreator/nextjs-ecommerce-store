@@ -31,6 +31,7 @@ const config: Config = {
       white: '#FFF',
       'white-transparent': '#FFFFFFA5',
       accent: '#A18A68',
+      'gray-light': '#EFEFEF',
       gray: '#D8D8D8',
       'gray-dark': '#707070',
       black: '#000000',

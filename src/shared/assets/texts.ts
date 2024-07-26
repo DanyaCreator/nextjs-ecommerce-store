@@ -65,3 +65,12 @@ export const tempCards = [
     price: '$ 29,00',
   },
 ];
+
+export const footerLinks = {
+  contacts: 'CONTACTS',
+  termsOfServices: 'TERMS OF SERVICES',
+  shippingAndReturns: 'SHIPPING AND RETURNS',
+  termsOfUse: 'Terms of use',
+  privacyPolicy: 'privacy policy',
+  giveAnEmail: 'Give an email, get the newsletter.',
+};

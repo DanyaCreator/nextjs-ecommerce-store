@@ -1,3 +1,4 @@
+import { Footer } from '@/widgets/footer';
 import { Header } from '@/widgets/header';
 import { MainSwiper } from '@/widgets/main-swiper';
 import { Card } from '@/entities/card';
@@ -23,6 +24,7 @@ export const HomePage = () => {
           ))}
         </div>
       </section>
+      <Footer />
     </main>
   );
 };

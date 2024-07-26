@@ -23,10 +23,7 @@ export const Slide = ({ title, price }: SlideProps) => {
           <h1 className={`${dmSans.className} text-white`}>{title}</h1>
           <h2 className={`${dmSans.className} text-white`}>{price}</h2>
         </div>
-        <LargeRoundedButton
-          text={slideTexts.viewProduct}
-          onClick={() => {}}
-        />
+        <LargeRoundedButton text={slideTexts.viewProduct} onClick={() => {}} />
       </div>
     </div>
   );

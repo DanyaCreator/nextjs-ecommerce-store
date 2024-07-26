@@ -21,24 +21,24 @@ export const Header = () => {
             alt={'search-icon'}
             href={'/'}
             width={19}
-            additionalStyles={'mb-[5px]'}
-            underline
+            className={'mb-[5px]'}
+            activeStyles={'underline-link'}
           />
           <IconLink
             src={cartIcon}
             alt={'crt-icon'}
             href={'/'}
             width={21}
-            additionalStyles={'mb-[7px]'}
-            underline
+            className={'mb-[7px]'}
+            activeStyles={'underline-link'}
           />
           <IconLink
             src={profileIcon}
             alt={'profile-icon'}
             href={'/'}
             width={20}
-            additionalStyles={'mb-[6px]'}
-            underline
+            className={'mb-[6px]'}
+            activeStyles={'underline-link'}
           />
         </div>
       </nav>
