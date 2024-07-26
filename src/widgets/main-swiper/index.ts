@@ -1,1 +1,1 @@
-export { MainSwiper } from './ui/MainSwiper';
+export { MainSwiper } from './ui';

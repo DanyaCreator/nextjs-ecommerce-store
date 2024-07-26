@@ -17,7 +17,12 @@ export const MainSwiper = () => {
           bulletClass: 'swiper-pagination-bullet',
           bulletActiveClass: 'swiper-pagination-bullet-active',
         }}
-        modules={[Pagination]}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
+        modules={[Pagination, Autoplay]}
         spaceBetween={40}>
         <div className='swiper-pagination' />
         {slideTexts.tempData.map((t, i) => (

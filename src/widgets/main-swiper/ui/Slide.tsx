@@ -26,7 +26,6 @@ export const Slide = ({ title, price }: SlideProps) => {
         <LargeRoundedButton
           text={slideTexts.viewProduct}
           onClick={() => {}}
-          transparent
         />
       </div>
     </div>

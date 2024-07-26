@@ -16,10 +16,21 @@ body {
 h1 {
   font-weight: 500;
   font-size: 33px;
-  line-height: 43px;
+  line-height: 43px
 }
 
 h2 {
   font-size: 26px;
   line-height: 35px;
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+h4 {
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 500;
 }

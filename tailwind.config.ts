@@ -29,6 +29,7 @@ const config: Config = {
     },
     colors: {
       white: '#FFF',
+      'white-transparent': '#FFFFFFA5',
       accent: '#A18A68',
       gray: '#D8D8D8',
       'gray-dark': '#707070',
@@ -36,7 +37,8 @@ const config: Config = {
     },
     fontSize: {
       logo: ['35px', '40px'],
-      underlineLink: ['16px', '32px']
+      underlineLink: ['16px', '32px'],
+      'body-large': ['16px', 'auto'],
     },
   },
   plugins: [],
