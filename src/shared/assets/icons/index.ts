@@ -1,3 +1,4 @@
+import arrowDown from './arrow-down.svg';
 import arrowRight from './arrow-right.svg';
 import cartIcon from './cart-icon.svg';
 import facebookIcon from './facebook-icon.svg';
@@ -16,4 +17,5 @@ export {
   instagramIcon,
   linkedIcon,
   twitterIcon,
+  arrowDown,
 };

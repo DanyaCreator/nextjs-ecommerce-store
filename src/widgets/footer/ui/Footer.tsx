@@ -13,7 +13,7 @@ import { IconLink } from '@/shared/ui/IconLink';
 
 export const Footer = () => {
   return (
-    <footer className='w-full mt-[250px] pt-[3px] pb-[90px]'>
+    <footer className='container w-full mt-[250px] pb-[90px]'>
       <section className='w-full flex justify-between border-t border-solid border-t-gray-light'>
         <article className='mt-[52px]'>
           <div className='flex gap-[41px]'>

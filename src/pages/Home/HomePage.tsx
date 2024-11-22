@@ -1,5 +1,3 @@
-import { Footer } from '@/widgets/footer';
-import { Header } from '@/widgets/header';
 import { MainSwiper } from '@/widgets/main-swiper';
 import { Card } from '@/entities/card';
 import { dmSans } from '@/shared/assets/fonts';
@@ -8,7 +6,6 @@ import { linkTexts, tempCards, titles } from '@/shared/assets/texts';
 export const HomePage = () => {
   return (
     <main className='container'>
-      <Header />
       <MainSwiper />
       <section className='w-full mt-16 flex flex-col gap-[39px]'>
         <div className='flex justify-between items-center'>
@@ -24,7 +21,6 @@ export const HomePage = () => {
           ))}
         </div>
       </section>
-      <Footer />
     </main>
   );
 };

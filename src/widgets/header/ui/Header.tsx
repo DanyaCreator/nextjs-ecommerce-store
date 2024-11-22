@@ -1,3 +1,5 @@
+'use client';
+
 import { cartIcon, profileIcon, searchIcon } from '@/shared/assets/icons';
 import { buttonTexts } from '@/shared/assets/texts';
 import { IconLink } from '@/shared/ui/IconLink';
@@ -6,13 +8,13 @@ import { Logo } from './logo';
 
 export const Header = () => {
   return (
-    <header className='flex justify-between mt-16'>
+    <header className='container flex justify-between pt-[20px]'>
       <Logo />
       <nav className='flex'>
         <div className='relative flex gap-16 pr-12'>
-          <UnderlineLink text={buttonTexts.shop} />
-          <UnderlineLink text={buttonTexts.blog} />
-          <UnderlineLink text={buttonTexts.ourStory} />
+          <UnderlineLink text={buttonTexts.shop} href={'/catalog'} />
+          <UnderlineLink text={buttonTexts.blog} href={''} />
+          <UnderlineLink text={buttonTexts.ourStory} href={''} />
           <div className='absolute w-[1px] h-[17px] top-1/2 right-0 translate-y-[-50%] bg-gray-dark' />
         </div>
         <div className='flex gap-[39px] items-center pl-[47px]'>
