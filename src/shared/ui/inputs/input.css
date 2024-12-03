@@ -20,18 +20,12 @@
 }
 
 .track-slider {
-    background-color: lightgray;
     width: 100%;
     height: 1px;
+
+    background-color: lightgray;
+
     z-index: 1;
-}
-
-.slider-left-value {
-    left: 6px;
-}
-
-.slider-right-value {
-    right: -4px;
 }
 
 .thumb,
@@ -41,9 +35,11 @@
 }
 
 .thumb {
-    pointer-events: none;
-    position: absolute;
     height: 0;
+
+    position: absolute;
+
+    pointer-events: none;
 }
 
 .thumb-left {
@@ -55,15 +51,27 @@
 }
 
 .thumb::-webkit-slider-thumb {
-    opacity: 0.7;
-    background-image: url('/slash.png');
-    background-size: 13px;
-    background-repeat: no-repeat;
     width: 2px;
     height: 10px;
+
+    padding: 10px;
+
+    position: relative;
+
+    background-image: url('/slash.png');
+    background-size: 16px;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+
     cursor: pointer;
     pointer-events: all;
-    position: relative;
-    padding: 10px;
-    top: 5px;
+
+    top: 3px;
+    left: -7px;
+}
+
+.thumb::-webkit-slider-thumb:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+    transition: 300ms;
 }

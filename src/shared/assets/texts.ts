@@ -39,30 +39,101 @@ export const linkTexts = {
   viewAll: 'View All',
 };
 
-export const tempCards = [
+export type CardType = {
+  name: string;
+  categories?: string[];
+  materials?: string[];
+  sizes?: number[];
+  price: number;
+  inStock: boolean;
+  onSale: boolean;
+  sale: number;
+};
+
+export const tempCards: CardType[] = [
   {
-    title: 'Lira Earrings',
-    price: '$ 20,00',
+    name: 'Lira Earrings',
+    price: 20,
+    inStock: true,
+    onSale: false,
+    sale: 0,
   },
   {
-    title: 'Hal Earrings',
-    price: '$ 25,00',
+    name: 'Hal Earrings',
+    price: 25,
+    inStock: true,
+    onSale: true,
+    sale: 20,
   },
   {
-    title: 'Kaede Hair Pin Set Of 3 ',
-    price: '$ 30,00',
+    name: 'Kaede Hair Pin Set Of 3 ',
+    price: 30,
+    inStock: true,
+    onSale: true,
+    sale: 30,
   },
   {
-    title: 'Hair Pin Set of 3',
-    price: '$ 30,00',
+    name: 'Hair Pin Set of 3',
+    price: 30,
+    inStock: false,
+    onSale: false,
+    sale: 0,
   },
   {
-    title: 'Plaine Necklace',
-    price: '$ 19,00',
+    name: 'Plaine Necklace',
+    price: 19,
+    inStock: true,
+    onSale: false,
+    sale: 0,
   },
   {
-    title: 'Yuki Hair Pin Set of 3',
-    price: '$ 29,00',
+    name: 'Yuki Hair Pin Set of 3',
+    price: 29,
+    inStock: false,
+    onSale: false,
+    sale: 0,
+  },
+  {
+    name: 'Lira Earrings',
+    price: 20,
+    inStock: true,
+    onSale: false,
+    sale: 0,
+  },
+  {
+    name: 'Lira Earrings',
+    price: 20,
+    inStock: true,
+    onSale: false,
+    sale: 0,
+  },
+  {
+    name: 'Lira Earrings',
+    price: 20,
+    inStock: true,
+    onSale: false,
+    sale: 0,
+  },
+  {
+    name: 'Lira Earrings',
+    price: 20,
+    inStock: true,
+    onSale: false,
+    sale: 0,
+  },
+  {
+    name: 'Lira Earrings',
+    price: 20,
+    inStock: true,
+    onSale: false,
+    sale: 0,
+  },
+  {
+    name: 'Lira Earrings',
+    price: 20,
+    inStock: true,
+    onSale: false,
+    sale: 0,
   },
 ];
 

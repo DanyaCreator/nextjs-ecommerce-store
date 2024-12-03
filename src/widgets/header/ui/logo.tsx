@@ -1,5 +1,3 @@
-'use client';
-
 import { useRouter } from 'next/navigation';
 
 import { allertaStencil } from '@/shared/assets/fonts';
@@ -12,9 +10,7 @@ export const Logo = () => {
       <span className={`${allertaStencil.className} text-logo text-accent`}>
         S
       </span>
-      <span className={`${allertaStencil.className} text-logo`}>
-        HOPPE
-      </span>
+      <span className={`${allertaStencil.className} text-logo`}>HOPPE</span>
     </button>
   );
 };

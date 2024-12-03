@@ -10,7 +10,7 @@ import { FieldError } from '@/shared/ui/errors';
 
 type TextFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
-  title: string;
+  title?: string;
   error?: string;
   disabled?: boolean;
   className?: string;

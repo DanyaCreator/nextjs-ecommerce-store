@@ -1,5 +1,3 @@
-'use client';
-
 import { clsx } from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -21,6 +19,7 @@ export const UnderlineLink = ({ text, href }: UnderlineLinkProps) => {
         `${dmSans.className} flex items-center`,
         `text-underlineLink font-medium`,
         `active:underline active:underline-offset-[27px]`,
+        `focus:underline focus:underline-offset-[27px]`,
         pathname === href && 'underline underline-offset-[27px]'
       )}>
       {text}

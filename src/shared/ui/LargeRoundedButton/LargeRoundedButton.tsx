@@ -1,14 +1,17 @@
+import { ButtonHTMLAttributes } from 'react';
+
 import { clsx } from 'clsx';
 import { dmSans } from '@/shared/assets/fonts';
 
-type LargeRoundedButtonProps = {
+type LargeRoundedButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string;
-  onClick: () => unknown;
+  onClick?: () => unknown;
 };
 
 export const LargeRoundedButton = ({
   text,
   onClick,
+  ...props
 }: LargeRoundedButtonProps) => {
   return (
     <button
@@ -18,7 +21,8 @@ export const LargeRoundedButton = ({
         'text-white bg-transparent hover:text-black hover:bg-white',
         'transition'
       )}
-      onClick={onClick}>
+      onClick={onClick}
+      {...props}>
       {text}
     </button>
   );

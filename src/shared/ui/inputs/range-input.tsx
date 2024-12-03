@@ -1,9 +1,13 @@
-'use client';
-
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import './input.css';
 
-export const RangeInput = ({ min, max, onChange }) => {
+type RangeInputProps = {
+  min: number;
+  max: number;
+  onChange: (values: { min: number; max: number }) => void;
+};
+
+export const RangeInput = ({ min, max, onChange }: RangeInputProps) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
@@ -49,15 +53,14 @@ export const RangeInput = ({ min, max, onChange }) => {
   return (
     <>
       <div className={'flex flex-col gap-[10px] mt-[40px]'}>
-        {/* Style the price range slider */}
-        <div className='multi-slide-input-container'>
+        <div>
           <input
             type='range'
             min={min}
             max={max}
             value={minVal}
             onChange={(event) => {
-              const value = Math.min(Number(event.target.value), maxVal - 1);
+              const value = Math.min(Number(event.target.value), maxVal - 10);
               setMinVal(value);
             }}
             className='thumb thumb-left w-[272px]'
@@ -72,13 +75,12 @@ export const RangeInput = ({ min, max, onChange }) => {
             max={max}
             value={maxVal}
             onChange={(event) => {
-              const value = Math.max(Number(event.target.value), minVal + 1);
+              const value = Math.max(Number(event.target.value), minVal + 10);
               setMaxVal(value);
             }}
             className='thumb thumb-right w-[277px]'
             style={{
               zIndex: minVal > max - 100 || minVal === maxVal ? 4 : undefined,
-              backgroundColor: 'black',
             }}
           />
 
@@ -93,7 +95,9 @@ export const RangeInput = ({ min, max, onChange }) => {
           <span>
             Price: ${minVal} - ${maxVal}
           </span>
-          <a href="" className={'text-accent'}>Filter</a>
+          <a href='' className={'text-accent'}>
+            Filter
+          </a>
         </div>
       </div>
     </>

@@ -1,57 +1,73 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
+import { FormFilter } from '@/features/filter';
+import { FilterFormFields } from '@/features/filter/form-filter';
 import { Card } from '@/entities/card';
-import { tempCards } from '@/shared/assets/texts';
-import { SelectField } from '@/shared/ui/form-fields';
-import { TextField } from '@/shared/ui/form-fields';
-import { RangeInput, SwitchInput } from '@/shared/ui/inputs';
+import { CardType, tempCards } from '@/shared/assets/texts';
 
 export const Catalog = () => {
-  const emptyListTitle = 'The list is still empty';
+  const [filterData, setFilterData] = useState<FilterFormFields>({
+    name: '',
+    prices: { min: 0, max: 50 },
+    onSale: false,
+    inStock: false,
+    isFiltering: false,
+  });
 
-  const [rangeValues, setRangeValues] = useState({ min: 40, max: 300 });
+  const filterCards = useCallback(
+    (card: CardType) => {
+      const matchesName =
+        !filterData.name ||
+        card.name.toLowerCase().includes(filterData.name.toLowerCase());
 
-  const handleRangeChange = (values) => {
-    setRangeValues(values);
-  };
+      const matchesPrice =
+        (filterData.prices.min === 0 && filterData.prices.max === 50) ||
+        (card.price >= filterData.prices.min &&
+          card.price <= filterData.prices.max);
+
+      const matchesInStock = filterData.inStock ? card.inStock : true;
+
+      const matchesOnSale = filterData.onSale ? card.onSale : true;
+
+      return matchesName && matchesPrice && matchesInStock && matchesOnSale;
+    },
+    [filterData]
+  );
 
   return (
     <main className={'container mt-[96px] flex flex-col gap-[40px]'}>
       <h1 className={'capitalize text-[33px] font-[500]'}>shop the latest</h1>
       <div className={'flex flex-row gap-[35px]'}>
         <aside className={'min-w-[260px]'}>
-          <TextField label={'Search...'} className={'mb-[40px]'} />
-          <section className={'flex flex-col gap-[16px]'}>
-            <SelectField
-              items={[]}
-              unselectedTitle={'Shop By'}
-              emptyListText={emptyListTitle}
-            />
-            <SelectField
-              items={[]}
-              unselectedTitle={'Sort By'}
-              emptyListText={emptyListTitle}
-            />
-          </section>
-          <RangeInput min={40} max={300} onChange={handleRangeChange} />
-          <section className={'flex flex-col gap-[40px] mt-[40px]'}>
-            <div className={'w-full flex justify-between'}>
-              <span>On sale</span>
-              <SwitchInput />
-            </div>
-            <div className={'w-full flex justify-between'}>
-              <span>In stock</span>
-              <SwitchInput />
-            </div>
-          </section>
+          <FormFilter onFilterUpdate={setFilterData} />
         </aside>
         <article
           className={'grid grid-cols-3 gap-x-[24px] gap-y-[70px] max-w-[60vw]'}>
-          {tempCards.map((c, i) => (
-            <Card key={i} title={c.title} price={c.price} />
-          ))}
+          {filterData.isFiltering
+            ? tempCards
+                .filter(filterCards)
+                .map((card, i) => (
+                  <Card
+                    key={i}
+                    title={card.name}
+                    price={card.price}
+                    onSale={card.onSale}
+                    inStock={card.inStock}
+                    sale={card.sale}
+                  />
+                ))
+            : tempCards.map((card, i) => (
+                <Card
+                  key={i}
+                  title={card.name}
+                  price={card.price}
+                  onSale={card.onSale}
+                  inStock={card.inStock}
+                  sale={card.sale}
+                />
+              ))}
         </article>
       </div>
     </main>
