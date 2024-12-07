@@ -28,7 +28,7 @@ export const slideTexts = {
       price: '$ 68,00',
     },
   ],
-  viewProduct: 'View Product',
+  viewProduct: 'View ProductContent',
 };
 
 export const titles = {

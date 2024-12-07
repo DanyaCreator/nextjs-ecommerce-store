@@ -2,19 +2,14 @@
 
 import { useCallback, useState } from 'react';
 
-import { FormFilter } from '@/features/filter';
-import { FilterFormFields } from '@/features/filter/form-filter';
+import { FormFilter } from '@/features/Filter';
 import { Card } from '@/entities/card';
 import { CardType, tempCards } from '@/shared/assets/texts';
+import { defaultFilter } from '@/shared/model';
+import { FilterFormFields } from '@/shared/model/types';
 
 export const Catalog = () => {
-  const [filterData, setFilterData] = useState<FilterFormFields>({
-    name: '',
-    prices: { min: 0, max: 50 },
-    onSale: false,
-    inStock: false,
-    isFiltering: false,
-  });
+  const [filterData, setFilterData] = useState<FilterFormFields>(defaultFilter);
 
   const filterCards = useCallback(
     (card: CardType) => {
@@ -45,20 +40,10 @@ export const Catalog = () => {
         </aside>
         <article
           className={'grid grid-cols-3 gap-x-[24px] gap-y-[70px] max-w-[60vw]'}>
-          {filterData.isFiltering
-            ? tempCards
-                .filter(filterCards)
-                .map((card, i) => (
-                  <Card
-                    key={i}
-                    title={card.name}
-                    price={card.price}
-                    onSale={card.onSale}
-                    inStock={card.inStock}
-                    sale={card.sale}
-                  />
-                ))
-            : tempCards.map((card, i) => (
+          {filterData.isFiltering &&
+            tempCards
+              .filter(filterCards)
+              .map((card, i) => (
                 <Card
                   key={i}
                   title={card.name}
@@ -68,6 +53,17 @@ export const Catalog = () => {
                   sale={card.sale}
                 />
               ))}
+          {!filterData.isFiltering &&
+            tempCards.map((card, i) => (
+              <Card
+                key={i}
+                title={card.name}
+                price={card.price}
+                onSale={card.onSale}
+                inStock={card.inStock}
+                sale={card.sale}
+              />
+            ))}
         </article>
       </div>
     </main>

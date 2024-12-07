@@ -1,7 +1,9 @@
 import arrowDown from './arrow-down.svg';
 import arrowRight from './arrow-right.svg';
+import blackStar from './black-star.svg';
 import cartIcon from './cart-icon.svg';
 import facebookIcon from './facebook-icon.svg';
+import heartIcon from './heart.svg';
 import instagramIcon from './instagram-icon.svg';
 import linkedIcon from './linked-icon.svg';
 import profileIcon from './profile-icon.svg';
@@ -18,4 +20,6 @@ export {
   linkedIcon,
   twitterIcon,
   arrowDown,
+  blackStar,
+  heartIcon,
 };

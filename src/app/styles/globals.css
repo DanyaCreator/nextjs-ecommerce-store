@@ -42,26 +42,3 @@ h5 {
     font-size: 16px;
     line-height: 27px;
 }
-
-.underline-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -27px;
-    display: none;
-    width: 100%;
-    height: 1px;
-    background-color: black;
-
-}
-
-.underline-link:active::after {
-    display: block;
-}
-
-.link-black-filter:hover {
-    filter: brightness(0) saturate(100%) invert(0%) sepia(98%) saturate(7488%) hue-rotate(215deg) brightness(97%) contrast(100%);
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-}

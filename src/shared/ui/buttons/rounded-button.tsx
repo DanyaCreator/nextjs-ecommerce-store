@@ -9,9 +9,9 @@ export const RoundedButton = ({ text, ...props }: RoundedButtonProps) => {
   return (
     <button
       className={clsx(
-        'w-full h-[35px] bg-black rounded-xl',
+        'w-full h-[53px] bg-black rounded-[4px] border border-black',
         'text-white font-[400]',
-        'hover:bg-white hover:text-black hover:border hover:border-black',
+        'hover:bg-white hover:text-black',
         'transition-all duration-200 ease-in-out'
       )}
       {...props}>

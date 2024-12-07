@@ -1,7 +1,7 @@
-import { Product } from '@/pages/Product';
+import { ProductContent } from '@/pages/Product';
 
 const ProductPage = () => {
-  return <Product />;
+  return <ProductContent />;
 };
 
 export default ProductPage;

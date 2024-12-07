@@ -39,25 +39,25 @@ export const Footer = () => {
               src={linkedIcon}
               alt={'linkedIn'}
               href={'/'}
-              hoverStyles={'link-black-filter'}
+              hoverStyles={'link-black-Filter'}
             />
             <IconLink
               src={facebookIcon}
               alt={'facebook'}
               href={'/'}
-              hoverStyles={'link-black-filter'}
+              hoverStyles={'link-black-Filter'}
             />
             <IconLink
               src={instagramIcon}
               alt={'instagram'}
               href={'/'}
-              hoverStyles={'link-black-filter'}
+              hoverStyles={'link-black-Filter'}
             />
             <IconLink
               src={twitterIcon}
               alt={'twitter'}
               href={'/'}
-              hoverStyles={'link-black-filter'}
+              hoverStyles={'link-black-Filter'}
             />
           </div>
         </article>
