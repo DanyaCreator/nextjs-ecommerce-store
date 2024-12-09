@@ -1,9 +1,14 @@
 'use client';
 
 import clsx from 'clsx';
-import { ForwardedRef, forwardRef, InputHTMLAttributes, useState } from 'react';
+import {
+  ForwardedRef,
+  forwardRef,
+  InputHTMLAttributes,
+  ReactNode,
+  useState,
+} from 'react';
 import { BiHide, BiShow } from 'react-icons/bi';
-import { RxMagnifyingGlass } from 'react-icons/rx';
 
 import { dmSans } from '@/shared/assets/fonts';
 import { FieldError } from '@/shared/ui/errors';
@@ -14,11 +19,20 @@ type TextFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
   disabled?: boolean;
   className?: string;
+  icon?: ReactNode;
 };
 
 export const TextField = forwardRef(
   (
-    { label, title, disabled, error, className, ...props }: TextFieldProps,
+    {
+      label,
+      title,
+      disabled,
+      error,
+      className,
+      icon,
+      ...props
+    }: TextFieldProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const [isPasswordHidden, setIsPasswordHidden] = useState(true);
@@ -44,7 +58,7 @@ export const TextField = forwardRef(
             className={clsx(
               'flex items-center',
               'absolute bottom-3 pointer-events-none',
-              `${dmSans.className} text-h5 text-dark-gray`,
+              `${dmSans.className} text-h5 text-dark-gray font-normal`,
               'transition-all',
               'peer-focus:text-black peer-focus:text-[12px] peer-focus:translate-y-[-25px]',
               (props.defaultValue ||
@@ -56,7 +70,7 @@ export const TextField = forwardRef(
             )}>
             {label}
           </label>
-          <RxMagnifyingGlass className={'w-[25px] h-[25px] absolute right-0 bottom-3 bg-white'} />
+          {icon && icon}
           {props.type === 'password' && (
             <>
               {isPasswordHidden && (

@@ -8,6 +8,8 @@ import instagramIcon from './instagram-icon.svg';
 import linkedIcon from './linked-icon.svg';
 import profileIcon from './profile-icon.svg';
 import searchIcon from './search-icon.svg';
+import starOutlinedIcon from './star-outlined.svg';
+import starIcon from './star.svg';
 import twitterIcon from './twitter-icon.svg';
 
 export {
@@ -22,4 +24,6 @@ export {
   arrowDown,
   blackStar,
   heartIcon,
+  starOutlinedIcon,
+  starIcon,
 };

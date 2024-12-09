@@ -1,6 +1,7 @@
-import type { Config } from 'tailwindcss';
-
-const config: Config = {
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const colors = require('tailwindcss/colors');
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -28,6 +29,7 @@ const config: Config = {
       },
     },
     colors: {
+      ...colors,
       white: '#FFF',
       'white-transparent': '#FFFFFFA5',
       accent: '#A18A68',
@@ -39,9 +41,10 @@ const config: Config = {
     fontSize: {
       logo: ['35px', '40px'],
       underlineLink: ['16px', '32px'],
+      medium: ['14px', '16px'],
+      small: ['12px', '20px'],
       'body-large': ['16px', 'auto'],
     },
   },
   plugins: [],
 };
-export default config;

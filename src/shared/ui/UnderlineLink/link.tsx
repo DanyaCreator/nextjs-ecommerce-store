@@ -1,12 +1,13 @@
 import { clsx } from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useCallback, MouseEvent } from 'react';
 
 import { dmSans } from '@/shared/assets/fonts';
 
 type UnderlineLinkProps = {
   text: string;
-  href: string;
+  href?: string;
   onClick?: () => void;
   isActive?: boolean;
 };
@@ -19,10 +20,18 @@ export const UnderlineLink = ({
 }: UnderlineLinkProps) => {
   const pathname = usePathname();
 
+  const handleClick = useCallback(
+    (e: MouseEvent) => {
+      !href && e.preventDefault();
+      onClick && onClick();
+    },
+    [href, onClick]
+  );
+
   return (
     <Link
-      href={href}
-      onClick={onClick}
+      href={href ?? '/'}
+      onClick={handleClick}
       className={clsx(
         `${dmSans.className} flex items-center`,
         `text-underlineLink font-medium`,
