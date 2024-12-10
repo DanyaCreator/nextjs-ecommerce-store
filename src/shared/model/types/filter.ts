@@ -1,8 +1,10 @@
+import { Category, Material, Size } from '@/shared/model';
+
 export type FilterFormFields = {
   name: string;
-  categories?: string[];
-  materials?: string[];
-  sizes?: number[];
+  categories: Category[];
+  materials: Material[];
+  sizes: Size[];
   prices: { min: number; max: number };
   inStock: boolean;
   onSale: boolean;

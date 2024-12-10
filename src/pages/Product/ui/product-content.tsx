@@ -25,11 +25,11 @@ export const ProductContent = () => {
           {tempCards.slice(0, 3).map((card, i) => (
             <Card
               key={i}
-              title={card.name}
+              name={card.name}
               price={card.price}
-              onSale={card.onSale}
-              inStock={card.inStock}
-              sale={card.sale}
+              // onSale={card.onSale}
+              // inStock={card.inStock}
+              // sale={card.sale}
             />
           ))}
         </section>

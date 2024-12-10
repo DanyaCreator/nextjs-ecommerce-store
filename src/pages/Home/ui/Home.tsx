@@ -1,9 +1,27 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import { getProducts } from '../../../shared/api';
 import { MainSwiper } from '@/widgets/main-swiper';
 import { Card } from '@/entities/card';
 import { dmSans } from '@/shared/assets/fonts';
-import { linkTexts, tempCards, titles } from '@/shared/assets/texts';
+import { linkTexts, titles } from '@/shared/assets/texts';
+import { ProductEntity } from '@/shared/model';
 
 export const Home = () => {
+  const [products, setProducts] = useState<ProductEntity[] | null>(null);
+
+  const fetchProducts = async () => {
+    await getProducts().then((result) => {
+      result ? setProducts(result) : setProducts(null);
+    });
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
     <main className='container'>
       <MainSwiper />
@@ -15,17 +33,19 @@ export const Home = () => {
             {linkTexts.viewAll}
           </h4>
         </div>
-        <div className='w-full grid grid-cols-3 grid-rows-2 gap-x-[54px] gap-y-[84px]'>
-          {tempCards.map((c, i) => (
-            <Card
-              key={i}
-              title={c.name}
-              price={c.price}
-              sale={c.sale}
-              onSale={c.onSale}
-              inStock={c.inStock}
-            />
-          ))}
+        <div className='grid grid-cols-3 grid-rows-2 gap-x-[54px] gap-y-[84px]'>
+          {products &&
+            products.map((c, i) => (
+              <Card
+                key={i}
+                name={c.name.split(' ').slice(0, 3).join(' ')}
+                price={c.price}
+                image={c.images[0].url}
+                // sale={c.sale}
+                // onSale={c.onSale}
+                // inStock={c.inStock}
+              />
+            ))}
         </div>
       </section>
     </main>

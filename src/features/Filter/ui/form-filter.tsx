@@ -1,15 +1,29 @@
 import { useEffect } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 
-import { defaultFilter, FilterFormFields } from '@/shared/model';
+import {
+  Category,
+  Material,
+  Size,
+  defaultFilter,
+  FilterFormFields,
+} from '@/shared/model';
 import { SelectField, TextField } from '@/shared/ui/form-fields';
 import { RangeInput, SwitchInput } from '@/shared/ui/inputs';
 
 type FormFilterProps = {
   onFilterUpdate: (filter: FilterFormFields) => void;
+  itemsCategories: Category[];
+  itemsMaterials: Material[];
+  itemsSizes: Size[];
 };
 
-export const FormFilter = ({ onFilterUpdate }: FormFilterProps) => {
+export const FormFilter = ({
+  onFilterUpdate,
+  itemsCategories,
+  itemsMaterials,
+  itemsSizes,
+}: FormFilterProps) => {
   const { control } = useForm<FilterFormFields>({
     defaultValues: defaultFilter,
   });
@@ -23,6 +37,11 @@ export const FormFilter = ({ onFilterUpdate }: FormFilterProps) => {
     onFilterUpdate({ ...values, isFiltering: true } as FilterFormFields);
   }, [values]);
 
+  const formattedCategories = itemsCategories.map((item) => ({
+    id: item.id,
+    value: item.name,
+  }));
+
   return (
     <form>
       <Controller
@@ -34,17 +53,17 @@ export const FormFilter = ({ onFilterUpdate }: FormFilterProps) => {
       />
       <fieldset className={'flex flex-col gap-[16px]'}>
         <SelectField
-          items={[]}
+          items={formattedCategories}
           unselectedTitle={'Categories'}
           emptyListText={'The categories is empty yet'}
         />
         <SelectField
-          items={[]}
+          items={itemsMaterials}
           unselectedTitle={'Materials'}
           emptyListText={'The materials is empty yet'}
         />
         <SelectField
-          items={[]}
+          items={itemsSizes}
           unselectedTitle={'Sizes'}
           emptyListText={'The sizes is empty yet'}
         />

@@ -6,18 +6,17 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { dmSans } from '@/shared/assets/fonts';
-import { tempEarrings } from '@/shared/assets/images';
 import { buttonTexts } from '@/shared/assets/texts';
 
 type CardProps = {
-  title: string;
+  name: string;
   price: number;
-  onSale: boolean;
-  inStock: boolean;
-  sale: number;
+  image: string;
+  isFeatured: boolean;
+  isArchived: boolean;
 };
 
-export const Card = ({ title, price, onSale, inStock, sale }: CardProps) => {
+export const Card = ({ name, price, image, isFeatured, isArchived }: CardProps) => {
   const router = useRouter();
 
   const [{ y }, api] = useSpring(() => ({
@@ -25,25 +24,25 @@ export const Card = ({ title, price, onSale, inStock, sale }: CardProps) => {
   }));
 
   return (
-    <article>
+    <article className={'flex flex-col justify-between'}>
       <div
-        className='relative w-fit rounded-lg cursor-pointer overflow-hidden'
+        className='relative rounded-lg cursor-pointer overflow-hidden'
         onMouseEnter={() => api({ y: -65 })}
         onMouseLeave={() => api({ y: 0 })}
         onClick={() => router.push(`/product`)}>
-        {onSale && (
+        {isFeatured && (
           <span
             className={`${dmSans.className} absolute top-[16px] left-[16px] bg-accent p-1.5 rounded text-white text-[12px]`}>
-            -{sale}%
+            -{0}%
           </span>
         )}
-        {!inStock && (
+        {!isArchived && (
           <span
             className={`${dmSans.className} absolute top-[16px] left-[16px] bg-accent p-1.5 rounded text-white text-[12px]`}>
             Sold out
           </span>
         )}
-        <Image src={tempEarrings} alt={'earrings'} />
+        <Image src={image} alt={'product'} width={400} height={400} />
         <animated.div
           style={{ y }}
           className='absolute flex bottom-[-65px] w-full h-[65px] bg-white-transparent'>
@@ -53,8 +52,10 @@ export const Card = ({ title, price, onSale, inStock, sale }: CardProps) => {
           </span>
         </animated.div>
       </div>
-      <h3 className={`${dmSans.className} mt-6`}>{title}</h3>
-      <h4 className={`${dmSans.className} mt-4 text-accent`}>$ {price}</h4>
+      <div>
+        <h3 className={`${dmSans.className} mt-6`}>{name}</h3>
+        <h4 className={`${dmSans.className} mt-4 text-accent`}>$ {price}</h4>
+      </div>
     </article>
   );
 };
