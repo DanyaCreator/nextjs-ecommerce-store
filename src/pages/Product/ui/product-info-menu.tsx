@@ -1,9 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { UnderlineLink } from '@/shared/ui/UnderlineLink';
+import { getReviews } from '../api';
+import { Review } from '../model';
+import { ProductReviews } from './product-reviews';
 
-export const ProductInfoMenu = () => {
+type ProductInfoMenuProps = {
+  productId: string;
+};
+
+export const ProductInfoMenu = ({ productId }: ProductInfoMenuProps) => {
   const [activeTab, setActiveTab] = useState('description');
+
+  const [reviews, setReviews] = useState<Review[] | null>(null);
+
+  const fetchReviews = async () => {
+    await getReviews(productId).then((reviews) =>
+      reviews ? setReviews(reviews) : {}
+    );
+  };
+
+  useEffect(() => {
+    fetchReviews();
+  }, []);
 
   return (
     <article>
@@ -13,24 +32,21 @@ export const ProductInfoMenu = () => {
         }>
         <UnderlineLink
           text={'Description'}
-          href={'javascript:void(0)'} // doesn't work with #
           onClick={() => setActiveTab('description')}
           isActive={activeTab === 'description'}
         />
         <UnderlineLink
           text={'Additional information'}
-          href={'javascript:void(0)'}
           onClick={() => setActiveTab('additional-information')}
           isActive={activeTab === 'additional-information'}
         />
         <UnderlineLink
-          text={`Reviews (${0})`}
-          href={'javascript:void(0)'}
+          text={`Reviews (${reviews?.length ?? ''})`}
           onClick={() => setActiveTab('reviews')}
           isActive={activeTab === 'reviews'}
         />
       </nav>
-      <article className={'text-[16px] text-gray-dark font-[500] pt-[35px]'}>
+      <article className={'text-[16px] text-gray-dark font-[500] pt-[42px]'}>
         {activeTab === 'description' && (
           <p className={'text-gray-dark]'}>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
@@ -61,9 +77,11 @@ export const ProductInfoMenu = () => {
         )}
 
         {activeTab === 'reviews' && (
-          <p className={'text-gray-dark'}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-          </p>
+          <ProductReviews
+            reviews={reviews ?? []}
+            productId={productId}
+            fetchReviews={fetchReviews}
+          />
         )}
       </article>
     </article>

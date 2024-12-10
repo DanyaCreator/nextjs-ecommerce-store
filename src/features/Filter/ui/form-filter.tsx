@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
+import { RxMagnifyingGlass } from 'react-icons/rx';
 
 import {
   Category,
@@ -48,7 +49,18 @@ export const FormFilter = ({
         name={'name'}
         control={control}
         render={({ field }) => (
-          <TextField label={'Search...'} className={'mb-[40px]'} {...field} />
+          <TextField
+            label={'Search...'}
+            className={'mb-[40px]'}
+            icon={
+              <RxMagnifyingGlass
+                className={
+                  'w-[25px] h-[25px] absolute right-0 bottom-3 bg-white'
+                }
+              />
+            }
+            {...field}
+          />
         )}
       />
       <fieldset className={'flex flex-col gap-[16px]'}>

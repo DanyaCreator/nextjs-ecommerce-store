@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import type { Viewport } from 'next';
 import { Inter } from 'next/font/google';
+
 import './styles/globals.css';
 import { Footer } from '@/widgets/footer';
 import { Header } from '@/widgets/header';
+import { ModalProvider } from './provider/modal-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,11 +21,12 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children:React.ReactNode;
+  children: React.ReactNode;
 }>) {
   return (
     <html lang='en'>
       <body className={inter.className}>
+        <ModalProvider />
         <Header />
         {children}
         <Footer />

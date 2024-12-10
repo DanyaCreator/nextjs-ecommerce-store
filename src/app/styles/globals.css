@@ -42,3 +42,16 @@ h5 {
     font-size: 16px;
     line-height: 27px;
 }
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d8d8d8;
+    border-radius: 10px;
+}
