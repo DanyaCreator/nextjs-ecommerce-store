@@ -1,4 +1,7 @@
+import { Size } from '@/shared/model';
+
 export type Category = {
-  id: number;
+  id: string;
   name: string;
+  sizes: Size[];
 };

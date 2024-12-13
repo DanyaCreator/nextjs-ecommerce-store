@@ -70,8 +70,8 @@ export const Dropdown = ({
         style={{ top: 'calc(100% + 10px)', maxHeight }}
         className={clsx(
           'z-50',
-          'flex flex-col w-full rounded-b-lg',
-          'shadow-md overflow-hidden'
+          `flex flex-col w-full rounded-b-lg`,
+          'shadow-md overflow-auto'
         )}>
         {children}
       </animated.div>

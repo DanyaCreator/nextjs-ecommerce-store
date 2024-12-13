@@ -1,19 +1,19 @@
 import { dmSans } from '@/shared/assets/fonts';
-import { mainSwiperGirl } from '@/shared/assets/images';
 import { slideTexts } from '@/shared/assets/texts';
 import { LargeRoundedButton } from '@/shared/ui/LargeRoundedButton';
 
 type SlideProps = {
   title: string;
-  price: string;
+  price: number;
+  imageUrl: string;
 };
 
-export const Slide = ({ title, price }: SlideProps) => {
+export const Slide = ({ title, price, imageUrl }: SlideProps) => {
   return (
     <div
       className={'w-full h-full flex'}
       style={{
-        backgroundImage: `url(${mainSwiperGirl.src})`,
+        backgroundImage: `url(${imageUrl})`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundSize: 'cover',

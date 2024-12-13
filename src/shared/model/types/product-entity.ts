@@ -1,10 +1,16 @@
-import { ImageEntity } from '@/shared/model';
+import { Category, ImageEntity, Material, Size } from '@/shared/model';
 
 export type ProductEntity = {
-  id?: number;
+  id: string;
   name: string;
+  description: string;
   price: number;
   images: ImageEntity[];
-  isFeatured: boolean;
-  isArchived: boolean;
+  inStock: boolean;
+  onSale: boolean;
+  sale: number;
+  category: Category;
+  material: Material;
+  size: Size;
+  weight: number;
 };
