@@ -2,13 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
-import { getCatalog } from '../../../shared/api';
 import { MainSwiper } from '@/widgets/main-swiper';
 import { Card } from '@/entities/card';
+import { getCatalog } from '@/shared/api';
 import { dmSans } from '@/shared/assets/fonts';
 import { linkTexts, titles } from '@/shared/assets/texts';
-import { BillboardEntity, ProductEntity } from '@/shared/model';
-import { getBillboards } from '@/shared/api/get-billboards';
+import { ProductEntity } from '@/shared/model';
 
 export const Home = () => {
   const [products, setProducts] = useState<ProductEntity[] | null>(null);

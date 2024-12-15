@@ -33,6 +33,8 @@ export const Card = ({
     y: 0,
   }));
 
+  const finalPrice = price - (sale / 100) * price;
+
   return (
     <article className={'flex flex-col justify-between'}>
       <div
@@ -44,6 +46,10 @@ export const Card = ({
           <span
             className={`${dmSans.className} absolute top-[16px] left-[16px] bg-accent p-1.5 rounded text-white text-[12px]`}>
             -{sale}%
+            <h4
+              className={`${dmSans.className} text-[14px] line-through`}>
+              $ {price}
+            </h4>
           </span>
         )}
         {!inStock && (
@@ -62,9 +68,11 @@ export const Card = ({
           </span>
         </animated.div>
       </div>
-      <div>
+      <div className={'relative'}>
         <h3 className={`${dmSans.className} mt-6`}>{name}</h3>
-        <h4 className={`${dmSans.className} mt-4 text-accent`}>$ {price}</h4>
+        <h4 className={`${dmSans.className} mt-4 text-accent`}>
+          $ {finalPrice.toFixed(2)}
+        </h4>
       </div>
     </article>
   );

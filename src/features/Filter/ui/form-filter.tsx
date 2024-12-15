@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { RxMagnifyingGlass } from 'react-icons/rx';
 
@@ -21,10 +22,7 @@ export const FormFilter = ({
   itemsSizes,
   defaultValue,
 }: FormFilterProps) => {
-  const {
-    control,
-    formState: { defaultValues },
-  } = useForm<FilterFormFields>({
+  const { control } = useForm<FilterFormFields>({
     defaultValues: defaultValue,
   });
 
@@ -36,8 +34,6 @@ export const FormFilter = ({
     // it's normal
     onFilterUpdate({ ...values, isFiltering: true } as FilterFormFields);
   }, [values]);
-
-
 
   const formattedCategories = itemsCategories.map((item) => ({
     id: item.id,
@@ -120,7 +116,6 @@ export const FormFilter = ({
             min={0}
             max={50}
             onChange={(range) => field.onChange(range)}
-            {...field}
           />
         )}
       />

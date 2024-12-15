@@ -1,7 +1,8 @@
 import { ProductEntity } from '@/shared/model';
 
 export type BillboardEntity = {
-  id: string;
+  billboardId: string;
+  productId: string;
   label: string;
   imageUrl: string;
   product: ProductEntity;

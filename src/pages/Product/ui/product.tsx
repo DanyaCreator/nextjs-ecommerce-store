@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { Card } from '@/entities/card';
 import { getCatalog } from '@/shared/api';
@@ -38,17 +38,32 @@ export const ProductContent = ({ productId }: Product) => {
     fetchProduct();
   }, []);
 
+  const filterCards = useCallback(
+    (card: ProductEntity) => {
+      if (currentProduct) {
+        const matchesCategory = currentProduct.category.id.includes(
+          card.category.id
+        );
+
+        const matchesProduct = !currentProduct.id.includes(card.id);
+
+        return matchesCategory && matchesProduct;
+      }
+    },
+    [currentProduct]
+  );
+
   return (
     <main className={`container mt-[128px] flex flex-col gap-[100px]`}>
       {currentProduct && (
         <article className={'flex gap-[62px]'}>
           <section className={`w-full flex justify-between gap-[30px]`}>
-            <SliderForProduct />
+            <SliderForProduct url={currentProduct.images[0].url} />
             <ProductInfo
-              name={currentProduct?.name}
-              price={currentProduct?.price}
-              id={currentProduct?.id}
-              category={currentProduct?.category.name}
+              name={currentProduct.name}
+              price={currentProduct.price}
+              id={currentProduct.id}
+              category={currentProduct.category.name}
             />
           </section>
         </article>
@@ -68,7 +83,7 @@ export const ProductContent = ({ productId }: Product) => {
         <section className={'grid grid-cols-3 gap-[24px]'}>
           {products &&
             products
-              .slice(0, 3)
+              .filter(filterCards)
               .map((card, i) => (
                 <Card
                   key={i}

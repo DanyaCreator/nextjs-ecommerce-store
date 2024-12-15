@@ -1,5 +1,6 @@
-import { getCategories } from '@/shared/api/get-categories';
-import { getMaterials } from '@/shared/api/get-materials';
+import { getMaterials } from '@/shared/api';
+import { getCategories } from '@/shared/api';
+
 import { Category, Material } from '@/shared/model';
 
 export const getFilterEntities = (): Promise<

@@ -1,12 +1,12 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import 'swiper/css';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './pagination.css';
-import { slideTexts } from '@/shared/assets/texts';
 import { Slide } from './Slide';
-import { useEffect, useState } from 'react';
 import { BillboardEntity } from '@/shared/model';
 import { getBillboards } from '@/shared/api/get-billboards';
 
@@ -24,9 +24,9 @@ export const MainSwiper = () => {
   }, []);
 
   return (
-    <div className='mt-4'>
+    <div className='mt-4 rounded-2xl'>
       <Swiper
-        className={'mySwiper h-[646px] rounded-xl'}
+        className={'mySwiper h-[646px] '}
         pagination={{
           el: '.swiper-pagination',
           bulletClass: 'swiper-pagination-bullet',
@@ -47,6 +47,7 @@ export const MainSwiper = () => {
                 title={billboard.label}
                 price={billboard.product && billboard.product.price}
                 imageUrl={billboard.imageUrl}
+                id={billboard.productId}
               />
             </SwiperSlide>
           ))}

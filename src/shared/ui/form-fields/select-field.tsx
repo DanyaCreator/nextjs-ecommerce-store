@@ -19,7 +19,7 @@ type SelectFieldProps = InputHTMLAttributes<HTMLInputElement> & {
 
 type Item = {
   id: string;
-  value: string;
+  value: string | number;
 };
 
 export const SelectField = forwardRef(
