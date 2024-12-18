@@ -108,9 +108,7 @@ export const RangeInput = forwardRef(
             <span>
               Price: ${minVal} - ${maxVal}
             </span>
-            <a href='' className={'text-accent'}>
-              Filter
-            </a>
+            <span className={'text-accent'}>Filter</span>
           </div>
         </div>
       </>

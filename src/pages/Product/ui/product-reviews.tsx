@@ -11,18 +11,20 @@ type ProductReviewsProps = {
   reviews: Review[];
   productId: string;
   fetchReviews: () => Promise<void>;
+  productName: string;
 };
 
 export const ProductReviews = ({
   reviews,
   productId,
   fetchReviews,
+  productName,
 }: ProductReviewsProps) => {
   return (
     <section className='h-[580px] flex gap-[87px]'>
       <div className='flex-1 flex flex-col gap-[52px]'>
         <h3 className={`${dmSans.className} text-black font-normal`}>
-          {reviews.length} Reviewers for lira earrings
+          {reviews.length} Reviewers for {productName}
         </h3>
         <div className='flex flex-col w-full overflow-auto'>
           {reviews.map((r) => (

@@ -1,6 +1,8 @@
 import { ForwardedRef, forwardRef, InputHTMLAttributes } from 'react';
 
-type SwitchInputProps = InputHTMLAttributes<HTMLInputElement>;
+type SwitchInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> & {
+  value: boolean;
+};
 
 export const SwitchInput = forwardRef(
   ({ ...props }: SwitchInputProps, ref: ForwardedRef<HTMLInputElement>) => {

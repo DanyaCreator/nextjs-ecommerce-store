@@ -1,17 +1,22 @@
 'use client';
 
+import './pagination.css';
 import 'swiper/css';
+
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import './pagination.css';
-import { slideTexts } from '@/shared/assets/texts';
+import { Billboard } from '@/shared/model';
 import { Slide } from './Slide';
 
-export const MainSwiper = () => {
+type MainSwiperProps = {
+  billboards: Billboard[];
+};
+
+export const MainSwiper = ({ billboards }: MainSwiperProps) => {
   return (
-    <div className='mt-4'>
+    <div className='mt-4 rounded-2xl'>
       <Swiper
-        className={'mySwiper h-[646px] rounded-xl'}
+        className={'mySwiper h-[646px] '}
         pagination={{
           el: '.swiper-pagination',
           bulletClass: 'swiper-pagination-bullet',
@@ -25,11 +30,17 @@ export const MainSwiper = () => {
         modules={[Pagination, Autoplay]}
         spaceBetween={40}>
         <div className='swiper-pagination' />
-        {slideTexts.tempData.map((t, i) => (
-          <SwiperSlide key={i}>
-            <Slide title={t.title} price={t.price} />
-          </SwiperSlide>
-        ))}
+        {billboards &&
+          billboards.map((billboard, i) => (
+            <SwiperSlide key={i}>
+              <Slide
+                id={billboard.product && billboard.product.id}
+                title={billboard.label}
+                price={billboard.product && billboard.product.price}
+                imageUrl={billboard.imageUrl}
+              />
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );

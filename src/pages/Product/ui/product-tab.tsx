@@ -5,11 +5,21 @@ import { getReviews } from '../api';
 import { Review } from '../model';
 import { ProductReviews } from './product-reviews';
 
-type ProductInfoMenuProps = {
+type ProductTabProps = {
   productId: string;
+  description: string;
+  weight: number;
+  material: string;
+  productName: string;
 };
 
-export const ProductInfoMenu = ({ productId }: ProductInfoMenuProps) => {
+export const ProductTab = ({
+  productId,
+  weight,
+  description,
+  material,
+  productName,
+}: ProductTabProps) => {
   const [activeTab, setActiveTab] = useState('description');
 
   const [reviews, setReviews] = useState<Review[] | null>(null);
@@ -48,36 +58,23 @@ export const ProductInfoMenu = ({ productId }: ProductInfoMenuProps) => {
       </nav>
       <article className={'text-[16px] text-gray-dark font-[500] pt-[42px]'}>
         {activeTab === 'description' && (
-          <p className={'text-gray-dark]'}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-            dolorem mollitia natus quasi sunt? Accusamus exercitationem impedit
-            ipsam itaque laudantium natus necessitatibus, similique
-            voluptatibus! Commodi reprehenderit, voluptas! Impedit, possimus,
-            quis?
-          </p>
+          <p className={'text-gray-dark]'}>{description}</p>
         )}
 
         {activeTab === 'additional-information' && (
           <ul className={'flex flex-col gap-[15px]'}>
             <li className={'text-black'}>
-              Weight: <span className={'text-gray-dark'}>{0.3} kg</span>
+              Weight: <span className={'text-gray-dark'}>{weight} g</span>
             </li>
             <li className={'text-black'}>
-              Dimentions:{' '}
-              <span className={'text-gray-dark'}>15 x 10 x 1 cm</span>
-            </li>
-            <li className={'text-black'}>
-              Colors:{' '}
-              <span className={'text-gray-dark'}>Black, Browns, White</span>
-            </li>
-            <li className={'text-black'}>
-              Material: <span className={'text-gray-dark'}>Metal</span>
+              Material: <span className={'text-gray-dark'}>{material}</span>
             </li>
           </ul>
         )}
 
         {activeTab === 'reviews' && (
           <ProductReviews
+            productName={productName}
             reviews={reviews ?? []}
             productId={productId}
             fetchReviews={fetchReviews}

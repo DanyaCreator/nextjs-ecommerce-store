@@ -1,13 +1,15 @@
 'use client';
 
+import './scroll-for-dropdown.css';
+
 import { useSpring, animated } from '@react-spring/web';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 
 import { dmSans } from '@/shared/assets/fonts';
 import { arrowDown } from '@/shared/assets/icons';
-import { useOutsideAlerter } from '@/shared/model';
+import { useLockedBody, useOutsideAlerter } from '@/shared/model';
 
 type DropdownProps = {
   isOpenChange: () => void;
@@ -43,6 +45,10 @@ export const Dropdown = ({
     else api({ maxHeight: 170 });
   });
 
+  const [isLocked, setIsLocked] = useState(false);
+
+  useLockedBody(isLocked);
+
   return (
     <div className={'relative'} ref={dropdownMenuRef}>
       <div
@@ -67,11 +73,13 @@ export const Dropdown = ({
         />
       </div>
       <animated.div
+        onMouseEnter={() => setIsLocked(true)}
+        onMouseLeave={() => setIsLocked(false)}
         style={{ top: 'calc(100% + 10px)', maxHeight }}
         className={clsx(
           'z-50',
-          'flex flex-col w-full rounded-b-lg',
-          'shadow-md overflow-hidden'
+          `flex flex-col w-full rounded-b-lg`,
+          'shadow-md scroll-for-dropdown'
         )}>
         {children}
       </animated.div>

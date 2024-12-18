@@ -19,7 +19,7 @@ type SelectFieldProps = InputHTMLAttributes<HTMLInputElement> & {
 
 type Item = {
   id: string;
-  value: string;
+  value: string | number;
 };
 
 export const SelectField = forwardRef(
@@ -56,10 +56,9 @@ export const SelectField = forwardRef(
             {items.length === 0 && (
               <p className={dmSans.className}>{emptyListText}</p>
             )}
-            {items.length !== 0 &&
-              items.map((i) => (
+            {items.length !== 0 && (
+              <>
                 <div
-                  key={i.id}
                   className='w-full h-10 relative'
                   onClick={() => setIsOpen(false)}>
                   <input
@@ -69,7 +68,7 @@ export const SelectField = forwardRef(
                       'appearance-none absolute w-full h-full rounded-sm bg-white peer',
                       'hover:bg-light-gray transition-colors cursor-pointer'
                     )}
-                    value={i.id}
+                    value={''}
                     ref={ref}
                   />
                   <label
@@ -77,7 +76,7 @@ export const SelectField = forwardRef(
                       `${dmSans.className} absolute top-1/2 left-1`,
                       '-translate-y-1/2 pointer-events-none'
                     )}>
-                    {i.value}
+                    All {unselectedTitle}
                   </label>
                   <Check
                     className={clsx(
@@ -86,7 +85,38 @@ export const SelectField = forwardRef(
                     )}
                   />
                 </div>
-              ))}
+                {items.map((i) => (
+                  <div
+                    key={i.id}
+                    className='w-full h-10 relative'
+                    onClick={() => setIsOpen(false)}>
+                    <input
+                      {...props}
+                      type='radio'
+                      className={clsx(
+                        'appearance-none absolute w-full h-full rounded-sm bg-white peer',
+                        'hover:bg-light-gray transition-colors cursor-pointer'
+                      )}
+                      value={i.id}
+                      ref={ref}
+                    />
+                    <label
+                      className={clsx(
+                        `${dmSans.className} absolute top-1/2 left-1`,
+                        '-translate-y-1/2 pointer-events-none'
+                      )}>
+                      {i.value}
+                    </label>
+                    <Check
+                      className={clsx(
+                        'hidden w-4 h-4 peer-checked:block',
+                        'absolute right-1 top-1/2 -translate-y-1/2 pointer-events-none'
+                      )}
+                    />
+                  </div>
+                ))}
+              </>
+            )}
           </div>
         </Dropdown>
         {error && <FieldError errorMessage={error} />}
@@ -96,5 +126,3 @@ export const SelectField = forwardRef(
 );
 
 SelectField.displayName = 'SelectField';
-
-// {/*      sizes.find((s) => s.id === watchSizeIdField)?.name ||*/}
