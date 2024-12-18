@@ -43,20 +43,19 @@ export const Card = ({
         onMouseLeave={() => api({ y: 0 })}
         onClick={() => router.push(`/${id}`)}>
         {onSale && (
-          <span
-            className={`${dmSans.className} absolute top-[16px] left-[16px] bg-accent p-1.5 rounded text-white text-[12px]`}>
+          <div
+            className={`${dmSans.className} absolute flex flex-col top-[16px] left-[16px] bg-accent p-1.5 rounded text-white text-[12px]`}>
             -{sale}%
-            <h4
-              className={`${dmSans.className} text-[14px] line-through`}>
+            <span className={`${dmSans.className} text-[12px] line-through`}>
               $ {price}
-            </h4>
-          </span>
+            </span>
+          </div>
         )}
         {!inStock && (
-          <span
+          <div
             className={`${dmSans.className} absolute top-[16px] left-[16px] bg-accent p-1.5 rounded text-white text-[12px]`}>
             Sold out
-          </span>
+          </div>
         )}
         <Image src={image} alt={'product'} width={400} height={400} />
         <animated.div
@@ -69,10 +68,10 @@ export const Card = ({
         </animated.div>
       </div>
       <div className={'relative'}>
-        <h3 className={`${dmSans.className} mt-6`}>{name}</h3>
-        <h4 className={`${dmSans.className} mt-4 text-accent`}>
+        <h5 className={`${dmSans.className} mt-6`}>{name}</h5>
+        <h5 className={`${dmSans.className} mt-4 text-accent`}>
           $ {finalPrice.toFixed(2)}
-        </h4>
+        </h5>
       </div>
     </article>
   );

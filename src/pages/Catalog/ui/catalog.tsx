@@ -1,39 +1,22 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { FormFilter } from '@/features/Filter';
 import { Card } from '@/entities/card';
-import { getCatalog, getFilterEntities } from '@/shared/api';
-import { defaultFilter, ItemsEntity, ProductEntity } from '@/shared/model';
+import { defaultFilter, ItemsEntity, Product } from '@/shared/model';
 import { FilterFormFields } from '@/shared/model/types';
 
-export const Catalog = () => {
-  const [products, setProducts] = useState<ProductEntity[] | null>(null);
+type CatalogProps = {
+  products: Product[];
+  dropdownItems: ItemsEntity;
+};
 
-  const [items, setItems] = useState<ItemsEntity>();
-
+export const Catalog = ({ products, dropdownItems }: CatalogProps) => {
   const [filterData, setFilterData] = useState<FilterFormFields>(defaultFilter);
 
-  const fetchProducts = async () => {
-    await getCatalog().then((result) => {
-      result ? setProducts(result) : setProducts(null);
-    });
-  };
-
-  const fetchFilter = async () => {
-    await getFilterEntities().then((result) => {
-      result ? setItems(result) : {};
-    });
-  };
-
-  useEffect(() => {
-    fetchProducts();
-    fetchFilter();
-  }, []);
-
   const filterCards = useCallback(
-    (card: ProductEntity) => {
+    (card: Product) => {
       const matchesName =
         !filterData.name ||
         card.name.toLowerCase().includes(filterData.name.toLowerCase());
@@ -73,20 +56,19 @@ export const Catalog = () => {
 
   return (
     <main className={'container mt-[96px] flex flex-col gap-[40px]'}>
-      <h1 className={'capitalize text-[33px] font-[500]'}>shop the latest</h1>
+      <h1 className={'capitalize'}>shop the latest</h1>
       <div className={'flex flex-row gap-[35px] justify-between'}>
         <aside className={'min-w-[260px]'}>
           <FormFilter
             onFilterUpdate={setFilterData}
-            itemsCategories={items ? items[0] : []}
-            itemsSizes={
-              items
-                ? items[0].find((c) => c.id === filterData.categories)?.sizes ??
-                  []
+            categories={dropdownItems ? dropdownItems[0] : []}
+            sizes={
+              dropdownItems
+                ? dropdownItems[0].find((c) => c.id === filterData.categories)
+                    ?.sizes ?? []
                 : []
             }
-            itemsMaterials={items ? items[1] : []}
-            defaultValue={filterData}
+            materials={dropdownItems ? dropdownItems[1] : []}
           />
         </aside>
         <article

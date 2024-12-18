@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-import { BillboardEntity, DEFAULT_API_URL } from '@/shared/model';
+import { Billboard, DEFAULT_API_URL } from '@/shared/model';
 
 export const getBillboards = async () => {
   try {
-    const billboards = await axios.get<BillboardEntity[]>(
+    const billboards = await axios.get<Billboard[]>(
       `${DEFAULT_API_URL}/billboards`
     );
 

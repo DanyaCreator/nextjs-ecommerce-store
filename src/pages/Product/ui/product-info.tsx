@@ -26,7 +26,7 @@ export const ProductInfo = ({
         <h1 className={`text-[26px] font-[400] mb-[23px]`}>
           {name.split(' ').slice(0, 3).join(' ')}
         </h1>
-        <h3 className={'text-accent font-[500]'}>{price} $</h3>
+        <h2 className={'text-accent font-[500]'}>{price} $</h2>
       </div>
 
       <div>

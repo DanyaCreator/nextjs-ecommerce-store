@@ -1,45 +1,27 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 
 import { Card } from '@/entities/card';
-import { getCatalog } from '@/shared/api';
-import { ProductEntity } from '@/shared/model';
-import { ProductTab } from './product-tab';
+import { Product } from '@/shared/model';
 import { ProductInfo } from './product-info';
+import { ProductTab } from './product-tab';
 import { SliderForProduct } from './slider-for-product';
-import { getProduct } from '@/shared/api/get-product';
 
-type Product = {
+type ProductContentProps = {
+  products: Product[];
   productId: string;
 };
 
-export const ProductContent = ({ productId }: Product) => {
-  const [products, setProducts] = useState<ProductEntity[] | null>(null);
 
-  const fetchProducts = async () => {
-    await getCatalog().then((result) => {
-      result ? setProducts(result) : setProducts(null);
-    });
-  };
-
-  const [currentProduct, setCurrentProduct] = useState<ProductEntity | null>(
-    null
-  );
-
-  const fetchProduct = async () => {
-    await getProduct(productId).then((result) => {
-      result ? setCurrentProduct(result) : setCurrentProduct(null);
-    });
-  };
-
-  useEffect(() => {
-    fetchProducts();
-    fetchProduct();
-  }, []);
+export const ProductContent = ({
+  products,
+  productId,
+}: ProductContentProps) => {
+  const currentProduct = products.find((product) => product.id === productId);
 
   const filterCards = useCallback(
-    (card: ProductEntity) => {
+    (card: Product) => {
       if (currentProduct) {
         const matchesCategory = currentProduct.category.id.includes(
           card.category.id
@@ -58,7 +40,7 @@ export const ProductContent = ({ productId }: Product) => {
       {currentProduct && (
         <article className={'flex gap-[62px]'}>
           <section className={`w-full flex justify-between gap-[30px]`}>
-            <SliderForProduct url={currentProduct.images[0].url} />
+            <SliderForProduct images={currentProduct.images} />
             <ProductInfo
               name={currentProduct.name}
               price={currentProduct.price}
@@ -71,15 +53,16 @@ export const ProductContent = ({ productId }: Product) => {
 
       {currentProduct && (
         <ProductTab
+          productName={currentProduct.name.split(' ').slice(0, 3).join(' ')}
           productId={productId}
-          description={currentProduct?.description}
-          weight={currentProduct?.weight}
-          material={currentProduct?.material.value}
+          description={currentProduct.description}
+          weight={currentProduct.weight}
+          material={currentProduct.material.value}
         />
       )}
 
       <article className={'flex flex-col gap-[50px]'}>
-        <h4 className={'font-[400] text-[26px]'}>Similar items</h4>
+        <h1 className={'font-[400] text-[26px]'}>Similar items</h1>
         <section className={'grid grid-cols-3 gap-[24px]'}>
           {products &&
             products

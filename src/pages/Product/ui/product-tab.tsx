@@ -5,11 +5,12 @@ import { getReviews } from '../api';
 import { Review } from '../model';
 import { ProductReviews } from './product-reviews';
 
-type ProductInfoMenuProps = {
+type ProductTabProps = {
   productId: string;
   description: string;
   weight: number;
   material: string;
+  productName: string;
 };
 
 export const ProductTab = ({
@@ -17,7 +18,8 @@ export const ProductTab = ({
   weight,
   description,
   material,
-}: ProductInfoMenuProps) => {
+  productName,
+}: ProductTabProps) => {
   const [activeTab, setActiveTab] = useState('description');
 
   const [reviews, setReviews] = useState<Review[] | null>(null);
@@ -72,6 +74,7 @@ export const ProductTab = ({
 
         {activeTab === 'reviews' && (
           <ProductReviews
+            productName={productName}
             reviews={reviews ?? []}
             productId={productId}
             fetchReviews={fetchReviews}

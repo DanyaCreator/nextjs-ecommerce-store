@@ -1,11 +1,11 @@
-import { Category, ImageEntity, Material, Size } from '@/shared/model';
+import { Category, ProductImage, Material, Size } from '@/shared/model';
 
-export type ProductEntity = {
+export type Product = {
   id: string;
   name: string;
   description: string;
   price: number;
-  images: ImageEntity[];
+  images: ProductImage[];
   inStock: boolean;
   onSale: boolean;
   sale: number;

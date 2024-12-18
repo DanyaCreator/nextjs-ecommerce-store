@@ -1,28 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
+import './pagination.css';
 import 'swiper/css';
+
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import './pagination.css';
+import { Billboard } from '@/shared/model';
 import { Slide } from './Slide';
-import { BillboardEntity } from '@/shared/model';
-import { getBillboards } from '@/shared/api/get-billboards';
 
-export const MainSwiper = () => {
-  const [billboards, setBillboards] = useState<BillboardEntity[] | null>(null);
+type MainSwiperProps = {
+  billboards: Billboard[];
+};
 
-  const fetchBillboards = async () => {
-    await getBillboards().then((result) => {
-      result ? setBillboards(result) : setBillboards(null);
-    });
-  };
-
-  useEffect(() => {
-    fetchBillboards();
-  }, []);
-
+export const MainSwiper = ({ billboards }: MainSwiperProps) => {
   return (
     <div className='mt-4 rounded-2xl'>
       <Swiper
@@ -44,10 +34,10 @@ export const MainSwiper = () => {
           billboards.map((billboard, i) => (
             <SwiperSlide key={i}>
               <Slide
+                id={billboard.product && billboard.product.id}
                 title={billboard.label}
                 price={billboard.product && billboard.product.price}
                 imageUrl={billboard.imageUrl}
-                id={billboard.productId}
               />
             </SwiperSlide>
           ))}

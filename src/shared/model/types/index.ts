@@ -1,8 +1,8 @@
 export type { FilterFormFields } from './filter';
-export type { ProductEntity } from './product-entity';
-export type { ImageEntity } from './image-entity';
+export type { Product } from './product';
+export type { ProductImage } from './product-image';
 export type { Category } from './category-entity';
 export type { Size } from './size-entity';
 export type { Material } from './material-entity';
 export type { ItemsEntity } from './items-entity';
-export type { BillboardEntity } from './billboard-entity';
+export type { Billboard } from './billboard';

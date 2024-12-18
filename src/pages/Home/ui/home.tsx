@@ -1,33 +1,23 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
 import { MainSwiper } from '@/widgets/main-swiper';
 import { Card } from '@/entities/card';
-import { getCatalog } from '@/shared/api';
 import { dmSans } from '@/shared/assets/fonts';
 import { linkTexts, titles } from '@/shared/assets/texts';
-import { ProductEntity } from '@/shared/model';
+import { Billboard, Product } from '@/shared/model';
 
-export const Home = () => {
-  const [products, setProducts] = useState<ProductEntity[] | null>(null);
+type HomeProps = {
+  products: Product[];
+  billboards: Billboard[];
+};
 
-  const fetchProducts = async () => {
-    await getCatalog().then((result) => {
-      result ? setProducts(result) : setProducts(null);
-    });
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
+export const Home = ({ products, billboards }: HomeProps) => {
   return (
     <main className='container'>
-      <MainSwiper />
+      <MainSwiper billboards={billboards} />
       <section className='w-full mt-16 flex flex-col gap-[39px]'>
         <div className='flex justify-between items-center'>
-          <h1 className={dmSans.className}>{titles.shopTheLatest}</h1>
+          <h1 className={`${dmSans.className}`}>{titles.shopTheLatest}</h1>
           <a
             className={`${dmSans.className} text-accent hover:text-black cursor-pointer transition`}
             href={'/catalog'}>

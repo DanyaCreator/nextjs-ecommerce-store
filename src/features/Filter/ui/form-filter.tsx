@@ -3,27 +3,31 @@ import { useEffect } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { RxMagnifyingGlass } from 'react-icons/rx';
 
-import { Category, Material, Size, FilterFormFields } from '@/shared/model';
+import {
+  Category,
+  Material,
+  Size,
+  FilterFormFields,
+  defaultFilter,
+} from '@/shared/model';
 import { SelectField, TextField } from '@/shared/ui/form-fields';
 import { RangeInput, SwitchInput } from '@/shared/ui/inputs';
 
 type FormFilterProps = {
   onFilterUpdate: (filter: FilterFormFields) => void;
-  itemsCategories: Category[];
-  itemsMaterials: Material[];
-  itemsSizes: Size[];
-  defaultValue: FilterFormFields;
+  categories: Category[];
+  materials: Material[];
+  sizes: Size[];
 };
 
 export const FormFilter = ({
   onFilterUpdate,
-  itemsCategories,
-  itemsMaterials,
-  itemsSizes,
-  defaultValue,
+  categories,
+  materials,
+  sizes,
 }: FormFilterProps) => {
   const { control } = useForm<FilterFormFields>({
-    defaultValues: defaultValue,
+    defaultValues: defaultFilter,
   });
 
   const values = useWatch({
@@ -35,20 +39,22 @@ export const FormFilter = ({
     onFilterUpdate({ ...values, isFiltering: true } as FilterFormFields);
   }, [values]);
 
-  const formattedCategories = itemsCategories.map((item) => ({
+  const formattedCategories = categories.map((item) => ({
     id: item.id,
     value: item.name,
   }));
 
-  const formattedMaterials = itemsMaterials.map((item) => ({
+  const formattedMaterials = materials.map((item) => ({
     id: item.id,
     value: item.value,
   }));
 
-  const formattedSizes = itemsSizes.map((item) => ({
-    id: item.id,
-    value: item.value,
-  }));
+  const formattedSizes = sizes
+    .map((item) => ({
+      id: item.id,
+      value: item.value,
+    }))
+    .sort((a, b) => a.value - b.value);
 
   return (
     <form>

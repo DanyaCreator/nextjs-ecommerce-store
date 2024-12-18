@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-import { DEFAULT_API_URL, ProductEntity } from '@/shared/model';
+import { DEFAULT_API_URL, Product } from '@/shared/model';
 
 export const getCatalog = async () => {
   try {
-    const products = await axios.get<ProductEntity[]>(
+    const products = await axios.get<Product[]>(
       `${DEFAULT_API_URL}/products`
     );
 
