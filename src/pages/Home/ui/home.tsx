@@ -26,16 +26,10 @@ export const Home = ({ products, billboards }: HomeProps) => {
         </div>
         <div className='grid grid-cols-3 grid-rows-2 gap-x-[54px] gap-y-[84px]'>
           {products &&
-            products.map((c, i) => (
+            products.map((card, i) => (
               <Card
                 key={i}
-                id={c.id}
-                name={c.name.split(' ').slice(0, 3).join(' ')}
-                price={c.price}
-                image={c.images[0].url}
-                sale={c.sale}
-                onSale={c.onSale}
-                inStock={c.inStock}
+                product={card}
               />
             ))}
         </div>

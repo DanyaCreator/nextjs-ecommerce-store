@@ -7,26 +7,15 @@ import { useRouter } from 'next/navigation';
 
 import { dmSans } from '@/shared/assets/fonts';
 import { buttonTexts } from '@/shared/assets/texts';
+import { Product } from '@/shared/model';
 
 type CardProps = {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  inStock: boolean;
-  onSale: boolean;
-  sale: number;
+  product: Product;
 };
 
-export const Card = ({
-  id,
-  name,
-  price,
-  image,
-  inStock,
-  onSale,
-  sale,
-}: CardProps) => {
+export const Card = ({ product }: CardProps) => {
+  const { id, name, price, sale, onSale, inStock, images } = product;
+
   const router = useRouter();
 
   const [{ y }, api] = useSpring(() => ({
@@ -57,7 +46,7 @@ export const Card = ({
             Sold out
           </div>
         )}
-        <Image src={image} alt={'product'} width={400} height={400} />
+        <Image src={images[0].url} alt={'product'} width={400} height={400} />
         <animated.div
           style={{ y }}
           className='absolute flex bottom-[-65px] w-full h-[65px] bg-white-transparent'>
@@ -68,7 +57,7 @@ export const Card = ({
         </animated.div>
       </div>
       <div className={'relative'}>
-        <h5 className={`${dmSans.className} mt-6`}>{name}</h5>
+        <h5 className={`${dmSans.className} mt-6`}>{name.split(' ').slice(0, 3).join(' ')}</h5>
         <h5 className={`${dmSans.className} mt-4 text-accent`}>
           $ {finalPrice.toFixed(2)}
         </h5>

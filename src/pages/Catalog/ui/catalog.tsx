@@ -79,32 +79,10 @@ export const Catalog = ({ products, dropdownItems }: CatalogProps) => {
             products &&
             products
               .filter(filterCards)
-              .map((card, i) => (
-                <Card
-                  key={i}
-                  id={card.id}
-                  name={card.name.split(' ').slice(0, 3).join(' ')}
-                  price={card.price}
-                  image={card.images[0].url}
-                  inStock={card.inStock}
-                  onSale={card.onSale}
-                  sale={card.sale}
-                />
-              ))}
+              .map((card, i) => <Card key={i} product={card} />)}
           {!filterData.isFiltering &&
             products &&
-            products.map((card, i) => (
-              <Card
-                key={i}
-                id={card.id}
-                name={card.name.split(' ').slice(0, 3).join(' ')}
-                price={card.price}
-                image={card.images[0].url}
-                inStock={card.inStock}
-                onSale={card.onSale}
-                sale={card.sale}
-              />
-            ))}
+            products.map((card, i) => <Card key={i} product={card} />)}
         </article>
       </div>
     </main>

@@ -13,7 +13,6 @@ type ProductContentProps = {
   productId: string;
 };
 
-
 export const ProductContent = ({
   products,
   productId,
@@ -67,18 +66,7 @@ export const ProductContent = ({
           {products &&
             products
               .filter(filterCards)
-              .map((card, i) => (
-                <Card
-                  key={i}
-                  id={card.id}
-                  name={card.name.split(' ').slice(0, 3).join(' ')}
-                  price={card.price}
-                  image={card.images[0].url}
-                  onSale={card.onSale}
-                  inStock={card.inStock}
-                  sale={card.sale}
-                />
-              ))}
+              .map((card, i) => <Card key={i} product={card} />)}
         </section>
       </article>
     </main>
