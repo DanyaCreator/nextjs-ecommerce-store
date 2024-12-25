@@ -1,16 +1,31 @@
 import { useEffect } from 'react';
+
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { RxMagnifyingGlass } from 'react-icons/rx';
 
-import { defaultFilter, FilterFormFields } from '@/shared/model';
+import {
+  Category,
+  Material,
+  Size,
+  FilterFormFields,
+  defaultFilter,
+} from '@/shared/model';
 import { SelectField, TextField } from '@/shared/ui/form-fields';
 import { RangeInput, SwitchInput } from '@/shared/ui/inputs';
 
 type FormFilterProps = {
   onFilterUpdate: (filter: FilterFormFields) => void;
+  categories: Category[];
+  materials: Material[];
+  sizes: Size[];
 };
 
-export const FormFilter = ({ onFilterUpdate }: FormFilterProps) => {
+export const FormFilter = ({
+  onFilterUpdate,
+  categories,
+  materials,
+  sizes,
+}: FormFilterProps) => {
   const { control } = useForm<FilterFormFields>({
     defaultValues: defaultFilter,
   });
@@ -23,6 +38,23 @@ export const FormFilter = ({ onFilterUpdate }: FormFilterProps) => {
     // it's normal
     onFilterUpdate({ ...values, isFiltering: true } as FilterFormFields);
   }, [values]);
+
+  const formattedCategories = categories.map((item) => ({
+    id: item.id,
+    value: item.name,
+  }));
+
+  const formattedMaterials = materials.map((item) => ({
+    id: item.id,
+    value: item.value,
+  }));
+
+  const formattedSizes = sizes
+    .map((item) => ({
+      id: item.id,
+      value: item.value,
+    }))
+    .sort((a, b) => a.value - b.value);
 
   return (
     <form>
@@ -45,20 +77,41 @@ export const FormFilter = ({ onFilterUpdate }: FormFilterProps) => {
         )}
       />
       <fieldset className={'flex flex-col gap-[16px]'}>
-        <SelectField
-          items={[]}
-          unselectedTitle={'Categories'}
-          emptyListText={'The categories is empty yet'}
+        <Controller
+          name={'categories'}
+          control={control}
+          render={({ field }) => (
+            <SelectField
+              items={formattedCategories}
+              unselectedTitle={'Categories'}
+              emptyListText={'The categories is empty yet'}
+              {...field}
+            />
+          )}
         />
-        <SelectField
-          items={[]}
-          unselectedTitle={'Materials'}
-          emptyListText={'The materials is empty yet'}
+        <Controller
+          name={'materials'}
+          control={control}
+          render={({ field }) => (
+            <SelectField
+              items={formattedMaterials}
+              unselectedTitle={'Materials'}
+              emptyListText={'The materials is empty yet'}
+              {...field}
+            />
+          )}
         />
-        <SelectField
-          items={[]}
-          unselectedTitle={'Sizes'}
-          emptyListText={'The sizes is empty yet'}
+        <Controller
+          name={'sizes'}
+          control={control}
+          render={({ field }) => (
+            <SelectField
+              items={formattedSizes}
+              unselectedTitle={'Sizes'}
+              emptyListText={'The sizes is empty yet'}
+              {...field}
+            />
+          )}
         />
       </fieldset>
       <Controller
@@ -69,7 +122,6 @@ export const FormFilter = ({ onFilterUpdate }: FormFilterProps) => {
             min={0}
             max={50}
             onChange={(range) => field.onChange(range)}
-            {...field}
           />
         )}
       />

@@ -6,44 +6,47 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { dmSans } from '@/shared/assets/fonts';
-import { tempEarrings } from '@/shared/assets/images';
 import { buttonTexts } from '@/shared/assets/texts';
+import { Product } from '@/shared/model';
 
 type CardProps = {
-  title: string;
-  price: number;
-  onSale: boolean;
-  inStock: boolean;
-  sale: number;
+  product: Product;
 };
 
-export const Card = ({ title, price, onSale, inStock, sale }: CardProps) => {
+export const Card = ({ product }: CardProps) => {
+  const { id, name, price, sale, onSale, inStock, images } = product;
+
   const router = useRouter();
 
   const [{ y }, api] = useSpring(() => ({
     y: 0,
   }));
 
+  const finalPrice = price - (sale / 100) * price;
+
   return (
-    <article>
+    <article className={'flex flex-col justify-between'}>
       <div
-        className='relative w-fit rounded-lg cursor-pointer overflow-hidden'
+        className='relative rounded-lg cursor-pointer overflow-hidden'
         onMouseEnter={() => api({ y: -65 })}
         onMouseLeave={() => api({ y: 0 })}
-        onClick={() => router.push(`/product`)}>
+        onClick={() => router.push(`/${id}`)}>
         {onSale && (
-          <span
-            className={`${dmSans.className} absolute top-[16px] left-[16px] bg-accent p-1.5 rounded text-white text-[12px]`}>
+          <div
+            className={`${dmSans.className} absolute flex flex-col top-[16px] left-[16px] bg-accent p-1.5 rounded text-white text-[12px]`}>
             -{sale}%
-          </span>
+            <span className={`${dmSans.className} text-[12px] line-through`}>
+              $ {price}
+            </span>
+          </div>
         )}
         {!inStock && (
-          <span
+          <div
             className={`${dmSans.className} absolute top-[16px] left-[16px] bg-accent p-1.5 rounded text-white text-[12px]`}>
             Sold out
-          </span>
+          </div>
         )}
-        <Image src={tempEarrings} alt={'earrings'} />
+        <Image src={images[0].url} alt={'product'} width={400} height={400} />
         <animated.div
           style={{ y }}
           className='absolute flex bottom-[-65px] w-full h-[65px] bg-white-transparent'>
@@ -53,8 +56,12 @@ export const Card = ({ title, price, onSale, inStock, sale }: CardProps) => {
           </span>
         </animated.div>
       </div>
-      <h3 className={`${dmSans.className} mt-6`}>{title}</h3>
-      <h4 className={`${dmSans.className} mt-4 text-accent`}>$ {price}</h4>
+      <div className={'relative'}>
+        <h5 className={`${dmSans.className} mt-6`}>{name.split(' ').slice(0, 3).join(' ')}</h5>
+        <h5 className={`${dmSans.className} mt-4 text-accent`}>
+          $ {finalPrice.toFixed(2)}
+        </h5>
+      </div>
     </article>
   );
 };
