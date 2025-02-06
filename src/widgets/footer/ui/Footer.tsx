@@ -17,7 +17,7 @@ export const Footer = () => {
       <section className='w-full flex justify-between border-t border-solid border-t-gray-light'>
         <article className='mt-[52px]'>
           <div className='flex gap-[41px]'>
-            <HighlightedLink href={'/'} text={footerLinks.contacts} />
+            <HighlightedLink href={'/contact'} text={footerLinks.contacts} />
             <HighlightedLink href={'/'} text={footerLinks.termsOfServices} />
             <HighlightedLink href={'/'} text={footerLinks.shippingAndReturns} />
           </div>
@@ -25,7 +25,11 @@ export const Footer = () => {
             <h5 className={`${dmSans.className}`}>
               © 2021 Shelly.{' '}
               <HighlightedLink href={'/'} text={footerLinks.termsOfUse} /> and{' '}
-              <HighlightedLink href={'/'} text={footerLinks.privacyPolicy} />.
+              <HighlightedLink
+                href={'/privacy'}
+                text={footerLinks.privacyPolicy}
+              />
+              .
             </h5>
           </div>
         </article>

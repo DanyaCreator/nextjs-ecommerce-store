@@ -1,12 +1,13 @@
 'use client';
 
+import { clsx } from 'clsx';
+import { usePathname } from 'next/navigation';
+
 import { cartIcon, profileIcon, searchIcon } from '@/shared/assets/icons';
 import { buttonTexts } from '@/shared/assets/texts';
 import { IconLink } from '@/shared/ui/IconLink';
 import { UnderlineLink } from '@/shared/ui/UnderlineLink';
 import { Logo } from './logo';
-import { clsx } from 'clsx';
-import { usePathname } from 'next/navigation';
 
 export const Header = () => {
   const pathname = usePathname();
