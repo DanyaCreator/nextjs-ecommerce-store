@@ -8,9 +8,11 @@ import { buttonTexts } from '@/shared/assets/texts';
 import { IconLink } from '@/shared/ui/IconLink';
 import { UnderlineLink } from '@/shared/ui/UnderlineLink';
 import { Logo } from './logo';
+import { useShoppingBagStore } from '@/shared/model/stores';
 
 export const Header = () => {
   const pathname = usePathname();
+  const shoppingBagStore = useShoppingBagStore();
 
   return (
     <header
@@ -39,6 +41,7 @@ export const Header = () => {
             src={cartIcon}
             alt={'crt-icon'}
             href={'/'}
+            onClick={shoppingBagStore.onOpen}
             width={21}
             className={'mb-[7px]'}
             activeStyles={'underline-link'}

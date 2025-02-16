@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Toast } from '@/shared/ui/modals';
+import { Bag } from '@/shared/ui/modals';
 
-export const ModalProvider = () => {
+export const BagProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export const ModalProvider = () => {
 
   return (
     <>
-      <Toast />
+      <Bag />
     </>
   );
 };
