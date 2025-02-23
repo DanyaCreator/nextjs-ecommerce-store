@@ -2,11 +2,13 @@
 
 import { useCallback } from 'react';
 
-import { Card } from '@/entities/card';
+import { addToCart } from '@/shared/api';
 import { Product } from '@/shared/model';
+import { Card } from '@/shared/ui/card';
 import { ProductInfo } from './product-info';
 import { ProductTab } from './product-tab';
 import { SliderForProduct } from './slider-for-product';
+import { useToastStore } from '@/shared/model/stores';
 
 type ProductContentProps = {
   products: Product[];
@@ -34,6 +36,18 @@ export const ProductContent = ({
     [currentProduct]
   );
 
+  const toastStore = useToastStore();
+
+  const addProduct = (curProd: Product) => {
+    try {
+      addToCart(curProd);
+      toastStore.onOpen('Product was added to cart!', 'success');
+      window.location.reload();
+    } catch (error) {
+      toastStore.onOpen('Sorry! Product is not added to cart!', 'error');
+    }
+  };
+
   return (
     <main className={`container mt-[128px] flex flex-col gap-[100px]`}>
       {currentProduct && (
@@ -45,6 +59,7 @@ export const ProductContent = ({
               price={currentProduct.price}
               id={currentProduct.id}
               category={currentProduct.category.name}
+              onClick={() => addProduct(currentProduct)}
             />
           </section>
         </article>

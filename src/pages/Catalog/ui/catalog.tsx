@@ -3,9 +3,9 @@
 import { useCallback, useState } from 'react';
 
 import { FormFilter } from '@/features/Filter';
-import { Card } from '@/entities/card';
 import { defaultFilter, ItemsEntity, Product } from '@/shared/model';
 import { FilterFormFields } from '@/shared/model/types';
+import { Card } from '@/shared/ui/card';
 
 type CatalogProps = {
   products: Product[];

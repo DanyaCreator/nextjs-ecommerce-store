@@ -12,6 +12,7 @@ type ProductMenuProps = {
   price: number;
   id: string;
   category: string;
+  onClick?: () => void;
 };
 
 export const ProductInfo = ({
@@ -19,6 +20,7 @@ export const ProductInfo = ({
   price,
   id,
   category,
+  onClick,
 }: ProductMenuProps) => {
   return (
     <article className={'flex flex-col justify-between w-1/2'}>
@@ -32,7 +34,7 @@ export const ProductInfo = ({
       <div>
         <div className={'flex gap-[23px]'}>
           <CountButton />
-          <RoundedButton text={'Add to card'} />
+          <RoundedButton text={'Add to card'} onClick={onClick} />
         </div>
       </div>
 

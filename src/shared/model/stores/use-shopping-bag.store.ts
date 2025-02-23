@@ -8,12 +8,6 @@ type ShoppingBagStore = {
 
 export const useShoppingBagStore = create<ShoppingBagStore>((set) => ({
   isOpen: false,
-  onOpen: () => {
-    set({ isOpen: true });
-    console.log('opened');
-  },
-  onClose: () => {
-    set({ isOpen: false });
-    console.log('closed');
-  },
+  onOpen: () => set({ isOpen: true }),
+  onClose: () => set({ isOpen: false }),
 }));
