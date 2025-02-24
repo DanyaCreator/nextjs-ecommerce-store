@@ -1,9 +1,12 @@
 import { animated, useSpring } from '@react-spring/web';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { getCart, removeFromCart } from '@/shared/api';
-import { Product, useLockedBody } from '@/shared/model';
-import { useShoppingBagStore, useToastStore } from '@/shared/model/stores';
+import { useLockedBody } from '@/shared/model';
+import {
+  useShoppingBagStore,
+  useToastStore,
+  useBagStore,
+} from '@/shared/model/stores';
 import { CloseButton, RoundedButton } from '@/shared/ui/buttons';
 import { BagCard } from '@/shared/ui/card';
 
@@ -28,6 +31,7 @@ export const Bag = () => {
 
 const BagModal = ({ isOpen, onClose }: BagModalProps) => {
   const toastStore = useToastStore();
+  const bagStore = useBagStore();
 
   const [{ x, opacity }, api] = useSpring(() => ({
     x: 500,
@@ -39,17 +43,15 @@ const BagModal = ({ isOpen, onClose }: BagModalProps) => {
     else api({ x: 0, opacity: 1 });
   });
 
-  const [cart, setCart] = useState<Product[]>([]);
-
   const fetchCart = () => {
-    const cartData = getCart();
+    const cartData = bagStore.getCart();
 
-    setCart(cartData.products);
+    bagStore.cart = cartData.products;
   };
 
   const removeProduct = (id: string) => {
     try {
-      removeFromCart(id);
+      bagStore.removeFromCart(id);
       toastStore.onOpen('Product was removed!', 'success');
       fetchCart();
     } catch (e) {
@@ -77,33 +79,34 @@ const BagModal = ({ isOpen, onClose }: BagModalProps) => {
 
           <main className={'p-[0_36px_36px]'}>
             <h6 className={'text-[12px] text-gray-dark font-normal'}>
-              {cart.length} items
+              {bagStore.cart.length} items
             </h6>
             <section className={'flex flex-col gap-[22px]'}>
-              {cart &&
-                cart.map((item, index) => (
+              {bagStore.cart &&
+                bagStore.cart.map((item, index) => (
                   <BagCard
                     key={index}
+                    id={item.id}
                     name={item.name}
                     price={item.price}
                     material={item.material}
                     size={item.size}
                     image={item.images[0].url}
+                    sale={item.sale}
                     onClose={() => removeProduct(item.id)}
                   />
                 ))}
             </section>
           </main>
         </div>
-        {cart && (
+        {bagStore.cart && (
           <footer
             className={
               'p-[36px] flex flex-col gap-[20px] border border-gray-light'
             }>
             <div className={'flex justify-between'}>
-              <span>Subtotal ({cart.length} items)</span>
-              {/*TODO Calculate total price*/}
-              <span>$ </span>
+              <span>Subtotal ({bagStore.cart.length} items)</span>
+              <span>$ {bagStore.total(bagStore.cart)}</span>
             </div>
             <RoundedButton text={'VIEW CART'} />
           </footer>

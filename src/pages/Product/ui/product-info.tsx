@@ -13,6 +13,8 @@ type ProductMenuProps = {
   id: string;
   category: string;
   onClick?: () => void;
+  sale: number;
+  onSale: boolean;
 };
 
 export const ProductInfo = ({
@@ -21,14 +23,21 @@ export const ProductInfo = ({
   id,
   category,
   onClick,
+  sale,
+  onSale,
 }: ProductMenuProps) => {
   return (
     <article className={'flex flex-col justify-between w-1/2'}>
       <div>
-        <h1 className={`text-[26px] font-[400] mb-[23px]`}>
+        <h1 className={`flex justify-between text-[26px] font-[400] mb-[23px]`}>
           {name.split(' ').slice(0, 3).join(' ')}
         </h1>
-        <h2 className={'text-accent font-[500]'}>{price} $</h2>
+        {onSale && (
+          <span className={'text-accent font-[500] line-through'}>{price}</span>
+        )}
+        <h2 className={'text-accent font-[500]'}>
+          $ {(price - (sale / 100) * price).toFixed(2)}
+        </h2>
       </div>
 
       <div>

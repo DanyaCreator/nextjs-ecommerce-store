@@ -32,7 +32,7 @@ export const Header = () => {
           <IconLink
             src={searchIcon}
             alt={'search-icon'}
-            href={'/'}
+            href={'/catalog'}
             width={19}
             className={'mb-[5px]'}
             activeStyles={'underline-link'}

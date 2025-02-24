@@ -2,13 +2,12 @@
 
 import { useCallback } from 'react';
 
-import { addToCart } from '@/shared/api';
 import { Product } from '@/shared/model';
+import { useToastStore, useBagStore } from '@/shared/model/stores';
 import { Card } from '@/shared/ui/card';
 import { ProductInfo } from './product-info';
 import { ProductTab } from './product-tab';
 import { SliderForProduct } from './slider-for-product';
-import { useToastStore } from '@/shared/model/stores';
 
 type ProductContentProps = {
   products: Product[];
@@ -37,12 +36,19 @@ export const ProductContent = ({
   );
 
   const toastStore = useToastStore();
+  const bagStore = useBagStore();
+
+  const fetchCart = () => {
+    const cartData = bagStore.getCart();
+
+    bagStore.cart = cartData.products;
+  };
 
   const addProduct = (curProd: Product) => {
     try {
-      addToCart(curProd);
+      bagStore.addToCart(curProd);
+      fetchCart();
       toastStore.onOpen('Product was added to cart!', 'success');
-      window.location.reload();
     } catch (error) {
       toastStore.onOpen('Sorry! Product is not added to cart!', 'error');
     }
@@ -58,6 +64,8 @@ export const ProductContent = ({
               name={currentProduct.name}
               price={currentProduct.price}
               id={currentProduct.id}
+              sale={currentProduct.sale}
+              onSale={currentProduct.onSale}
               category={currentProduct.category.name}
               onClick={() => addProduct(currentProduct)}
             />

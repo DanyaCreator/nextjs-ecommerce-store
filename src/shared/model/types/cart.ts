@@ -1,5 +1,5 @@
-import { Product } from './product';
+import { Product } from '@/shared/model';
 
 export type Cart = {
-  cart: Product[];
+  products: Product[];
 };
