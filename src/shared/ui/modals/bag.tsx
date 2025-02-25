@@ -1,4 +1,7 @@
+'use client';
+
 import { animated, useSpring } from '@react-spring/web';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useLockedBody } from '@/shared/model';
@@ -32,6 +35,7 @@ export const Bag = () => {
 const BagModal = ({ isOpen, onClose }: BagModalProps) => {
   const toastStore = useToastStore();
   const bagStore = useBagStore();
+  const router = useRouter();
 
   const [{ x, opacity }, api] = useSpring(() => ({
     x: 500,
@@ -108,7 +112,13 @@ const BagModal = ({ isOpen, onClose }: BagModalProps) => {
               <span>Subtotal ({bagStore.cart.length} items)</span>
               <span>$ {bagStore.total(bagStore.cart)}</span>
             </div>
-            <RoundedButton text={'VIEW CART'} />
+            <RoundedButton
+              text={'VIEW CART'}
+              onClick={() => {
+                router.push('/cart');
+                onClose();
+              }}
+            />
           </footer>
         )}
       </div>
