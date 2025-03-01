@@ -22,7 +22,10 @@ export const CartCard = ({
   remove,
 }: CartCardProps) => {
   return (
-    <article className={'flex justify-between pb-[40px] mb-[40px] border-b-2 border-gray-light'}>
+    <article
+      className={
+        'flex justify-between pb-[40px] mb-[40px] border-b-2 border-gray-light'
+      }>
       <div className={'w-[136px] relative aspect-square'}>
         <Image src={image} alt={'product'} fill={true} objectFit={'contain'} />
       </div>
