@@ -1,5 +1,3 @@
-'use client';
-
 import { animated, useSpring } from '@react-spring/web';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -103,14 +101,14 @@ const BagModal = ({ isOpen, onClose }: BagModalProps) => {
             </section>
           </main>
         </div>
-        {bagStore.cart && (
+        {Number(bagStore.total(bagStore.cart)) !== 0 && (
           <footer
             className={
               'p-[36px] flex flex-col gap-[20px] border border-gray-light'
             }>
             <div className={'flex justify-between'}>
               <span>Subtotal ({bagStore.cart.length} items)</span>
-              <span>$ {bagStore.total(bagStore.cart)}</span>
+              <span>$ {Number(bagStore.total(bagStore.cart))}</span>
             </div>
             <RoundedButton
               text={'VIEW CART'}

@@ -28,8 +28,9 @@ export const Cart = () => {
   return (
     <main className={'container mt-[96px]'}>
       <h1 className={'flex justify-center mb-[64px]'}>Shopping Cart</h1>
-      <div className={'grid grid-cols-2 grid-rows-1 gap-x-[150px]'}>
-        <article>
+      <div
+        className={'grid grid-cols-2 grid-rows-1 gap-x-[150px] max-h-[550px]'}>
+        <article className={'overflow-scroll'}>
           {bagStore.cart &&
             bagStore.cart.map((item, index) => (
               <CartCard
@@ -44,7 +45,7 @@ export const Cart = () => {
               />
             ))}
           <RoundedButton
-            text={'UPDATE CART'}
+            text={'CHECK CATALOG'}
             onClick={() => router.push('/catalog')}
             className={'bg-white !text-black mt-[40px]'}
           />
@@ -60,17 +61,17 @@ export const Cart = () => {
               $ {bagStore.total(bagStore.cart)}
             </span>
             <span className={'uppercase'}>shipping</span>
-            <p className={'text-gray-dark'}>
-              Shipping cost will be calculated once you have provided address
-            </p>
+            <p className={'text-gray-dark'}>Shipping cost is fixed by $ 15</p>
           </section>
           <section className={'flex justify-between mt-[40px] mb-[40px]'}>
             <span className={'uppercase font-bold'}>total</span>
-            <span className={'font-bold'}>$ 75,00</span>
+            <span className={'font-bold'}>
+              $ {15 + Number(bagStore.total(bagStore.cart))}
+            </span>
           </section>
           <RoundedButton
             text={'PROCEED TO CHECKOUT'}
-            onClick={() => router.push('/catalog')}
+            onClick={() => router.push('/checkout')}
           />
         </article>
       </div>
