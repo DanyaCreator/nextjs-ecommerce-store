@@ -6,3 +6,4 @@ export type { Size } from './size-entity';
 export type { Material } from './material-entity';
 export type { ItemsEntity } from './items-entity';
 export type { Billboard } from './billboard';
+export type { Cart } from './cart';

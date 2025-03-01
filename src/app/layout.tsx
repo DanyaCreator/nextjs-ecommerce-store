@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import './styles/globals.css';
 import { Footer } from '@/widgets/footer';
 import { Header } from '@/widgets/header';
+import { BagProvider } from './provider/bag-provider';
 import { ModalProvider } from './provider/modal-provider';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={inter.className}>
         <ModalProvider />
+        <BagProvider />
         <Header />
         {children}
         <Footer />

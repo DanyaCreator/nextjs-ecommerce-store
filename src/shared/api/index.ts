@@ -5,3 +5,4 @@ export { getBillboards } from './get-billboards';
 export { getMaterials } from './get-materials';
 export { getCategories } from './get-categories';
 export { getSizes } from './get-sizes';
+export * from './local-storage';

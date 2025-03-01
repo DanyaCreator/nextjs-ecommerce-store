@@ -57,7 +57,9 @@ export const Card = ({ product }: CardProps) => {
         </animated.div>
       </div>
       <div className={'relative'}>
-        <h5 className={`${dmSans.className} mt-6`}>{name.split(' ').slice(0, 3).join(' ')}</h5>
+        <h5 className={`${dmSans.className} mt-6`}>
+          {name.split(' ').slice(0, 3).join(' ')}
+        </h5>
         <h5 className={`${dmSans.className} mt-4 text-accent`}>
           $ {finalPrice.toFixed(2)}
         </h5>

@@ -1,10 +1,10 @@
 'use client';
 
 import { MainSwiper } from '@/widgets/main-swiper';
-import { Card } from '@/entities/card';
 import { dmSans } from '@/shared/assets/fonts';
 import { linkTexts, titles } from '@/shared/assets/texts';
 import { Billboard, Product } from '@/shared/model';
+import { Card } from '@/shared/ui/card';
 
 type HomeProps = {
   products: Product[];

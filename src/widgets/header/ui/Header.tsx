@@ -1,15 +1,18 @@
 'use client';
 
-import { cartIcon, profileIcon, searchIcon } from '@/shared/assets/icons';
-import { buttonTexts } from '@/shared/assets/texts';
-import { IconLink } from '@/shared/ui/IconLink';
-import { UnderlineLink } from '@/shared/ui/UnderlineLink';
-import { Logo } from './logo';
 import { clsx } from 'clsx';
 import { usePathname } from 'next/navigation';
 
+import { cartIcon, profileIcon, searchIcon } from '@/shared/assets/icons';
+import { buttonTexts } from '@/shared/assets/texts';
+import { useShoppingBagStore } from '@/shared/model/stores';
+import { IconLink } from '@/shared/ui/IconLink';
+import { UnderlineLink } from '@/shared/ui/UnderlineLink';
+import { Logo } from './logo';
+
 export const Header = () => {
   const pathname = usePathname();
+  const shoppingBagStore = useShoppingBagStore();
 
   return (
     <header
@@ -29,7 +32,7 @@ export const Header = () => {
           <IconLink
             src={searchIcon}
             alt={'search-icon'}
-            href={'/'}
+            href={'/catalog'}
             width={19}
             className={'mb-[5px]'}
             activeStyles={'underline-link'}
@@ -37,7 +40,8 @@ export const Header = () => {
           <IconLink
             src={cartIcon}
             alt={'crt-icon'}
-            href={'/'}
+            href={''}
+            onClick={shoppingBagStore.onOpen}
             width={21}
             className={'mb-[7px]'}
             activeStyles={'underline-link'}

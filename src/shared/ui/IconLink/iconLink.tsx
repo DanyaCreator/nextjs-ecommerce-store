@@ -10,6 +10,7 @@ type IconLinkProps = {
   className?: string;
   activeStyles?: string;
   hoverStyles?: string;
+  onClick?: () => void;
 };
 
 export const IconLink = ({
@@ -20,9 +21,11 @@ export const IconLink = ({
   className,
   activeStyles,
   hoverStyles,
+  onClick,
 }: IconLinkProps) => {
   return (
     <Link
+      onClick={onClick}
       href={href}
       className={clsx('relative w-fit', className, activeStyles)}>
       <Image
