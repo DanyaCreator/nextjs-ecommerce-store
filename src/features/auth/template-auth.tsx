@@ -8,7 +8,7 @@ import {
   UiTabsList,
   UiTabsTrigger,
 } from '@/shared/ui/tabs';
-import { RegisterForm } from './ui';
+import { LoginForm, RegisterForm } from './ui';
 
 export const TemplateAuth = ({
   authType,
@@ -27,18 +27,20 @@ export const TemplateAuth = ({
               className='flex-1 h-full disabled:opacity-100'
               value='login'
               disabled={authType === 'login'}
-              onClick={() => router.push('/login')}>
+              onClick={() => router.push('/auth/login')}>
               Sign in
             </UiTabsTrigger>
             <UiTabsTrigger
               value='register'
               className='flex-1 h-full disabled:opacity-100'
               disabled={authType === 'register'}
-              onClick={() => router.push('/register')}>
+              onClick={() => router.push('/auth/register')}>
               Register
             </UiTabsTrigger>
           </UiTabsList>
-          <UiTabsContent value='login' />
+          <UiTabsContent value='login'>
+            <LoginForm />
+          </UiTabsContent>
           <UiTabsContent value='register'>
             <RegisterForm />
           </UiTabsContent>

@@ -1,4 +1,4 @@
-import RegisterPage from '../../pages/register-page';
+import RegisterPage from '../../../pages/register-page';
 
 const Page = () => {
   return <RegisterPage />;

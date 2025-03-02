@@ -23,13 +23,13 @@ export const register = async (values: RegisterDTO) => {
 
   if (existingUser) throw new Error('Пользователь уже существует');
 
-  await db.user.create({
-    data: {
-      name,
-      email,
-      password: hashedPassword,
-    },
-  });
-
-  console.log('successfully created user');
+  db.user
+    .create({
+      data: {
+        name,
+        email,
+        password: hashedPassword,
+      },
+    })
+    .then(() => console.log('successfully saved'));
 };

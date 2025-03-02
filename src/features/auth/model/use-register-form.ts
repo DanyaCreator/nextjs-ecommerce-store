@@ -35,24 +35,24 @@ export const useRegisterForm = () => {
     resolver: zodResolver(RegisterSchema),
   });
 
-  const [isPasswordHidden, setIsPasswordHidden] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isPasswordConfirmVisible, setIsPasswordConfirmVisible] =
     useState(false);
 
   const getPasswordFieldVisibility = useCallback(
     (passwordType: 'password' | 'confirmPassword') => {
-      if (passwordType === 'password') return isPasswordHidden;
+      if (passwordType === 'password') return isPasswordVisible;
       else return isPasswordConfirmVisible;
     },
-    [isPasswordHidden, isPasswordConfirmVisible]
+    [isPasswordVisible, isPasswordConfirmVisible]
   );
 
   const changePasswordVisibility = useCallback(
     (type: 'password' | 'confirmPassword') => {
-      if (type === 'password') setIsPasswordHidden((prevState) => !prevState);
+      if (type === 'password') setIsPasswordVisible((prevState) => !prevState);
       else setIsPasswordConfirmVisible((prevState) => !prevState);
     },
-    [setIsPasswordHidden, setIsPasswordConfirmVisible]
+    [setIsPasswordVisible, setIsPasswordConfirmVisible]
   );
 
   const onSubmit = useCallback(async (data: z.infer<typeof RegisterSchema>) => {

@@ -147,7 +147,7 @@ export const RegisterForm = () => {
             )}
           />
         </div>
-        <UiButton type='submit'>SIGN IN</UiButton>
+        <UiButton type='submit'>SIGN UP</UiButton>
       </form>
     </UiForm>
   );

@@ -19,8 +19,9 @@ export const viewport: Viewport = {
   width: 'device-width',
 };
 
+// TODO: merge dashboard into this repo
 // TODO: disable fsd eslint plugin or setting up its
-// TODO: Add enum for routes
+// TODO: Add enum for routes.ts
 // TODO: Refactor FSD
 export default function RootLayout({
   children,
