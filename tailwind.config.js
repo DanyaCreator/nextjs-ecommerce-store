@@ -51,4 +51,4 @@ module.exports = {
   plugins: [],
 };
 
-// TODO: refactor ui-kit needed
+// TODO: types ui-kit needed

@@ -13,6 +13,7 @@ import {
 import { UiInput } from '@/shared/ui/input';
 import { useRegisterForm } from '../model';
 
+// TODO: add toast message
 export const RegisterForm = () => {
   const {
     form,

@@ -19,6 +19,9 @@ export const viewport: Viewport = {
   width: 'device-width',
 };
 
+// TODO: disable fsd eslint plugin or setting up its
+// TODO: Add enum for routes
+// TODO: Refactor FSD
 export default function RootLayout({
   children,
 }: Readonly<{

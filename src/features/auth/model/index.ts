@@ -1,1 +1,1 @@
-export { useRegisterForm } from './use-register-form';
+export { useRegisterForm, type RegisterDTO } from './use-register-form';

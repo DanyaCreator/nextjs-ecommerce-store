@@ -3,6 +3,8 @@ import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
+import { register } from '../api';
+
 const RegisterSchema = z
   .object({
     name: z
@@ -17,7 +19,7 @@ const RegisterSchema = z
   })
   .required()
   .superRefine(({ confirmPassword, password }, ctx) => {
-    if (confirmPassword === password) {
+    if (confirmPassword !== password) {
       ctx.addIssue({
         code: 'custom',
         message: 'Пароли не совпадают',
@@ -25,6 +27,8 @@ const RegisterSchema = z
       });
     }
   });
+
+export type RegisterDTO = z.input<typeof RegisterSchema>;
 
 export const useRegisterForm = () => {
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -51,10 +55,10 @@ export const useRegisterForm = () => {
     [setIsPasswordHidden, setIsPasswordConfirmVisible]
   );
 
-  const onSubmit = useCallback(
-    (data: z.infer<typeof RegisterSchema>) => console.log(data),
-    []
-  );
+  const onSubmit = useCallback(async (data: z.infer<typeof RegisterSchema>) => {
+    console.log(data);
+    await register(data);
+  }, []);
 
   return {
     form,

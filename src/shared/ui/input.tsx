@@ -8,6 +8,7 @@ const Input = React.forwardRef<
 >(({ className, type, ...props }, ref) => {
   const [filled, setFilled] = React.useState(false);
 
+  // TODO: iconSlot warning
   return (
     <label className={cn('w-full h-10 cursor-text relative', className)}>
       <input
