@@ -40,6 +40,8 @@ module.exports = {
     },
     fontSize: {
       logo: ['35px', '40px'],
+      '2xl': ['33px', '33px'],
+      lg: ['20px', '26px'],
       underlineLink: ['16px', '32px'],
       medium: ['14px', '16px'],
       small: ['12px', '20px'],
@@ -48,3 +50,5 @@ module.exports = {
   },
   plugins: [],
 };
+
+// TODO: refactor ui-kit needed
