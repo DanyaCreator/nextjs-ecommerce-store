@@ -1,10 +1,12 @@
 {
   "extends": [
-    "@feature-sliced",
-    "next/core-web-vitals",
     "eslint:recommended",
+    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "next/core-web-vitals", // includes eslint-next-config that includes [eslint-plugin-next, eslint-plugin-react, eslint-plugin-react-hooks]
+    "@feature-sliced/eslint-config/rules/import-order/experimental",
+    "@feature-sliced/eslint-config/rules/layers-slices",
+    "@feature-sliced/eslint-config/rules/public-api/lite"
   ],
   "plugins": ["@typescript-eslint"],
   "parser": "@typescript-eslint/parser",

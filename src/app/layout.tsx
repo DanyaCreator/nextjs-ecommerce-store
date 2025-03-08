@@ -2,9 +2,12 @@ import type { Metadata } from 'next';
 import type { Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
-import './styles/globals.css';
 import { Footer } from '@/widgets/footer';
 import { Header } from '@/widgets/header';
+
+// eslint-disable-next-line import/no-internal-modules
+import '../styles/globals.css';
+
 import { BagProvider } from './provider/bag-provider';
 import { ModalProvider } from './provider/modal-provider';
 
@@ -20,7 +23,6 @@ export const viewport: Viewport = {
 };
 
 // TODO: merge dashboard into this repo
-// TODO: disable fsd eslint plugin or setting up its
 // TODO: Add enum for routes.ts
 // TODO: Refactor FSD
 export default function RootLayout({
