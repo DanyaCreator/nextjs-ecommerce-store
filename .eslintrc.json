@@ -4,7 +4,7 @@
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
     "next/core-web-vitals", // includes eslint-next-config that includes [eslint-plugin-next, eslint-plugin-react, eslint-plugin-react-hooks]
-    "@feature-sliced/eslint-config/rules/import-order/experimental",
+    "@feature-sliced/eslint-config/rules/import-order",
     "@feature-sliced/eslint-config/rules/layers-slices",
     "@feature-sliced/eslint-config/rules/public-api/lite"
   ],
